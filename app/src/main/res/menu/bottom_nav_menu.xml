@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/miHome"
+        android:id="@+id/homeFragment"
         android:title="Home"
         android:icon="@drawable/ic_home"/>
 
@@ -11,7 +11,7 @@
         android:enabled="false"/>
 
     <item
-        android:id="@+id/miProfile"
+        android:id="@+id/profileFragment"
         android:title="Profile"
         android:icon="@drawable/ic_person" />
 </menu>
