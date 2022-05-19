@@ -4,14 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/drawable/bottom_nav_icon_color_selector.xml" value="0.154" />
+        <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/drawable/circle.xml" value="0.24" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/drawable/ic_camera.xml" value="0.154" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/drawable/indicator_active.xml" value="0.24" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/drawable/indicator_inactive.xml" value="0.24" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/drawable/rounded10.xml" value="0.24" />
+        <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/drawable/settings_btn_selector.xml" value="0.154" />
+        <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout-v23/fragment_profile.xml" value="0.12613981762917933" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_on_boarding.xml" value="0.25271739130434784" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/fragment_home.xml" value="0.176" />
-        <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/fragment_profile.xml" value="0.25271739130434784" />
+        <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/item_row_landmark.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/onboarding_item_container.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/menu/bottom_nav_menu.xml" value="0.259375" />
