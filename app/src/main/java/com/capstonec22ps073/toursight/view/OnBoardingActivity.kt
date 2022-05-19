@@ -1,18 +1,18 @@
 package com.capstonec22ps073.toursight.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.capstonec22ps073.toursight.LoginActivity
 import com.capstonec22ps073.toursight.OnBoardingAdapter
 import com.capstonec22ps073.toursight.OnBoardingItem
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.databinding.ActivityOnBoardingBinding
-import com.capstonec22ps073.toursight.databinding.OnboardingItemContainerBinding
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding
@@ -26,6 +26,11 @@ class OnBoardingActivity : AppCompatActivity() {
         setOnBoardingItems()
         setIndicators()
         setCurrentIndicator(0)
+        binding.btnStarted.setOnClickListener {
+            startActivity(Intent(this@OnBoardingActivity, LoginActivity::class.java))
+        }
+
+
     }
 
     private fun setOnBoardingItems() {
@@ -45,7 +50,8 @@ class OnBoardingActivity : AppCompatActivity() {
         )
 
         binding.onBoardingViewPager.adapter = onBoardingAdapter
-        binding.onBoardingViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.onBoardingViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 setCurrentIndicator(position)
@@ -58,7 +64,7 @@ class OnBoardingActivity : AppCompatActivity() {
         val layoutParams: LinearLayout.LayoutParams =
             LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
 
-        layoutParams.setMargins(0,0,20,0)
+        layoutParams.setMargins(0, 0, 20, 0)
         for (i in indicators.indices) {
             indicators[i] = ImageView(applicationContext)
             indicators[i]?.apply {
@@ -95,4 +101,5 @@ class OnBoardingActivity : AppCompatActivity() {
             }
         }
     }
+
 }

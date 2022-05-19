@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Toursight</string>
     <string name="get_started">Get started</string>
+    <string name="welocome_to">Welocome to</string>
+    <string name="register">Regrister</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
