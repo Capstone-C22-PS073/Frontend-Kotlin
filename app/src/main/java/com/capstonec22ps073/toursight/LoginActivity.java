@@ -15,14 +15,15 @@ import com.capstonec22ps073.toursight.databinding.OnboardingItemContainerBinding
 
 public class LoginActivity extends Activity {
     Button btnRegister;
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_login);
-    btnRegister = findViewById(R.id.btn_register);
-    btnRegister.setOnClickListener(view -> {
-        Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(i);
-    });
-}
 
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+//    btnRegister = findViewById(R.id.btn_register);
+//    btnRegister.setOnClickListener(view -> {
+//        Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+//        startActivity(i);
+//    });
     }
+
+}
