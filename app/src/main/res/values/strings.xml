@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Toursight</string>
     <string name="get_started">Get started</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register">Regrister</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 
     <string-array name="data_landmark_name">
         <item>Monas</item>
@@ -30,4 +32,5 @@
         <item>Patung Sura dan Baya adalah sebuah patung yang merupakan lambang kota Surabaya. Patung ini berada di depan Kebun Binatang Surabaya. Patung ini terdiri atas dua hewan ini yang menjadi inspirasi nama kota Surabaya: ikan sura dan baya</item>
         <item>Monumen Patung Dirgantara atau lebih dikenal dengan nama Patung Pancoran adalah salah satu monumen patung yang terdapat di Jakarta. Letak monumen ini berada di kawasan Pancoran, Jakarta Selatan.</item>
     </string-array>
+    
 </resources>
