@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.capstonec22ps073.toursight.LoginActivity
 import com.capstonec22ps073.toursight.OnBoardingAdapter
 import com.capstonec22ps073.toursight.OnBoardingItem
 import com.capstonec22ps073.toursight.R
