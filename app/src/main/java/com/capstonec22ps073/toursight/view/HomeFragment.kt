@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.capstonec22ps073.toursight.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.Landmark
 import com.capstonec22ps073.toursight.R
@@ -62,5 +63,12 @@ class HomeFragment : Fragment() {
         val listUserAdapter = LIstLandmarkAdapter(list)
         binding.rvLandmark.adapter = listUserAdapter
         binding.rvLandmark.isNestedScrollingEnabled = false
+
+        listUserAdapter.setOnItemClickCallback(object : LIstLandmarkAdapter.OnItemClickCallback {
+            override fun onItemClicked() {
+                val intent = Intent(requireContext(), DetailLandmarkActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 }

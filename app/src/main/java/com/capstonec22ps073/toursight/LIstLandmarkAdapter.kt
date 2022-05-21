@@ -7,6 +7,11 @@ import com.bumptech.glide.Glide
 import com.capstonec22ps073.toursight.databinding.ItemRowLandmarkBinding
 
 class LIstLandmarkAdapter(private val listLandmark: ArrayList<Landmark>): RecyclerView.Adapter<LIstLandmarkAdapter.LandmarkViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     inner class LandmarkViewHolder(var binding: ItemRowLandmarkBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -26,7 +31,13 @@ class LIstLandmarkAdapter(private val listLandmark: ArrayList<Landmark>): Recycl
             .into(holder.binding.imgItemImage)
 
         holder.binding.imgItemImage.clipToOutline = true
+
+        holder.binding.imgItemImage.setOnClickListener { onItemClickCallback.onItemClicked() }
     }
 
     override fun getItemCount(): Int = listLandmark.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked()
+    }
 }
