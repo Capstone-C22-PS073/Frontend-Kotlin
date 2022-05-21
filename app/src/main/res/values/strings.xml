@@ -1,9 +1,36 @@
 <resources>
     <string name="app_name">Toursight</string>
     <string name="get_started">Get started</string>
-    <string name="welocome_to">Welocome to</string>
     <string name="register">Regrister</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+
+    <string-array name="data_landmark_name">
+        <item>Monas</item>
+        <item>Gedung Sate</item>
+        <item>Candi Borobudur</item>
+        <item>Jam Gadang</item>
+        <item>Tugu Sura dan Baya</item>
+        <item>Patung Pancoran</item>
+    </string-array>
+
+    <string-array name="data_landmark_image">
+        <item>https://gallery.poskota.co.id/storage/Foto/Foto_20210622_093409_UE7.jpeg</item>
+        <item>https://www.goodnewsfromindonesia.id/uploads/post/large-pict-100-tahun-gedung-sate-98fc7fa941f49fc5b656d5edc9536b65.jpg</item>
+        <item>https://img.inews.co.id/media/822/files/inews_new/2021/06/08/IMG_08062021_114613__822_x_430_piksel_.jpg</item>
+        <item>https://pict-a.sindonews.net/dyn/620/pena/news/2020/12/31/29/286616/sejarah-jam-gadang-di-bukittinggi-dan-berkibarnya-bendera--merah-putih-trf.jpg</item>
+        <item>https://risetcdn.jatimtimes.com/images/2021/03/23/Surabaya-Foto-PT-Solutiva-Consulting-Indonesia32fed2f0a15a7037.jpg</item>
+        <item>https://assets.pikiran-rakyat.com/crop/0x0:0x0/750x500/photo/2020/10/23/2171724449.jpg</item>
+    </string-array>
+
+    <string-array name="data_landmark_description">
+        <item>Monumen Nasional atau yang disingkat dengan Monas atau Tugu Monas adalah monumen peringatan setinggi 132 meter yang didirikan untuk mengenang perlawanan dan perjuangan rakyat Indonesia untuk merebut kemerdekaan dari pemerintahan kolonial Hindia Belanda</item>
+        <item>Gedung Sate, dengan ciri khasnya berupa ornamen tusuk sate pada menara sentralnya, telah lama menjadi penanda atau markah tanah Kota Bandung yang tidak saja dikenal masyarakat di Jawa Barat</item>
+        <item>Borobudur adalah sebuah candi Buddha yang terletak di Borobudur, Magelang, Jawa Tengah, Indonesia. Candi ini terletak kurang lebih 100 km di sebelah barat daya Semarang, 86 km di sebelah barat Surakarta, dan 40 km di sebelah barat laut Yogyakarta</item>
+        <item>Jam Gadang adalah menara jam yang menjadi penanda atau ikon Kota Bukittinggi, Sumatra Barat, Indonesia. Menara jam ini memiliki jam dengan ukuran besar di empat sisinya sehingga dinamakan Jam Gadang, sebutan bahasa Minangkabau yang berarti "jam besar</item>
+        <item>Patung Sura dan Baya adalah sebuah patung yang merupakan lambang kota Surabaya. Patung ini berada di depan Kebun Binatang Surabaya. Patung ini terdiri atas dua hewan ini yang menjadi inspirasi nama kota Surabaya: ikan sura dan baya</item>
+        <item>Monumen Patung Dirgantara atau lebih dikenal dengan nama Patung Pancoran adalah salah satu monumen patung yang terdapat di Jakarta. Letak monumen ini berada di kawasan Pancoran, Jakarta Selatan.</item>
+    </string-array>
+    
 </resources>

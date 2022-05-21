@@ -1,6 +1,7 @@
 package com.capstonec22ps073.toursight.view
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
@@ -25,11 +26,10 @@ class OnBoardingActivity : AppCompatActivity() {
         setOnBoardingItems()
         setIndicators()
         setCurrentIndicator(0)
+        
         binding.btnStarted.setOnClickListener {
             startActivity(Intent(this@OnBoardingActivity, LoginActivity::class.java))
         }
-
-
     }
 
     private fun setOnBoardingItems() {
