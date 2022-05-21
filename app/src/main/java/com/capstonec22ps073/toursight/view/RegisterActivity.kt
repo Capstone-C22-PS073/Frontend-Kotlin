@@ -1,39 +1,50 @@
 package com.capstonec22ps073.toursight.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.capstonec22ps073.toursight.databinding.ActivityLoginBinding
+import com.capstonec22ps073.toursight.databinding.ActivityRegristerBinding
 
-class LoginActivity: AppCompatActivity() {
-    lateinit var binding: ActivityLoginBinding
+class RegisterActivity: AppCompatActivity() {
+    lateinit var binding: ActivityRegristerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityRegristerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnLogin.setOnClickListener{
-            login()
+        binding.btnSignup.setOnClickListener {
+            register()
         }
 
-        binding.tvBtnSignup.setOnClickListener{
-            startActivity(Intent(this, RegisterActivity::class.java))
+        binding.tvBtnLogin.setOnClickListener {
+            finish()
         }
     }
 
-    private fun login() {
+    private fun register() {
         binding.etEmail.clearFocus()
         binding.etPassword.clearFocus()
+        binding.etName.clearFocus()
 
         val isEmailValid = checkEmailValid()
         val isPasswordValid = checkPasswordValid()
+        val isNameValid = checkNameValid()
 
-        if (isEmailValid && isPasswordValid) {
-            Toast.makeText(this, "login berhasil", Toast.LENGTH_SHORT).show()
+        if (isEmailValid && isPasswordValid && isNameValid) {
+            Toast.makeText(this, "register berhasil", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun checkNameValid(): Boolean{
+        val nameText = binding.etName.text.toString()
+        if (nameText.isEmpty()) {
+            binding.etNameLayout.error = "Field can not be empty"
+            return false
+        }
+        binding.etNameLayout.error = null
+        return true
     }
 
     private fun checkEmailValid(): Boolean {
@@ -46,6 +57,7 @@ class LoginActivity: AppCompatActivity() {
             binding.etEmailLayout.error = "Please enter a valid email address"
             return false
         }
+        binding.etEmailLayout.error = null
         return true
     }
 
@@ -55,6 +67,11 @@ class LoginActivity: AppCompatActivity() {
             binding.etPasswordLayout.error =  "Field can not be empty"
             return false
         }
+        if (passwordText.length < 8) {
+            binding.etPasswordLayout.error = "Password must have at least 6 characters"
+            return false
+        }
+        binding.etPasswordLayout.error = null
         return true
     }
 }
