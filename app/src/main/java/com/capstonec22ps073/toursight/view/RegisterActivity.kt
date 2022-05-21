@@ -1,5 +1,6 @@
 package com.capstonec22ps073.toursight.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
@@ -34,6 +35,7 @@ class RegisterActivity: AppCompatActivity() {
 
         if (isEmailValid && isPasswordValid && isNameValid) {
             Toast.makeText(this, "register berhasil", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 

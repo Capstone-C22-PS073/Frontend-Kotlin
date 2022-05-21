@@ -33,6 +33,7 @@ class LoginActivity: AppCompatActivity() {
 
         if (isEmailValid && isPasswordValid) {
             Toast.makeText(this, "login berhasil", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
