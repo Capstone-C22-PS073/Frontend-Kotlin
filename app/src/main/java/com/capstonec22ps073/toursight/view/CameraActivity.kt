@@ -3,19 +3,24 @@ package com.capstonec22ps073.toursight.view
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.capstonec22ps073.toursight.databinding.ActivityCameraBinding
+import com.capstonec22ps073.toursight.util.createFile
+import java.io.File
 import java.lang.Exception
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -49,6 +54,8 @@ class CameraActivity : AppCompatActivity() {
         binding.btnClose.setOnClickListener {
             finish()
         }
+
+        binding.captureImage.setOnClickListener { takePhoto() }
     }
 
     override fun onResume() {
@@ -75,13 +82,25 @@ class CameraActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+
+            val intent = Intent(this, PreviewCaptureActivity::class.java)
+            intent.putExtra("status", "gallery")
+            intent.putExtra("picture", selectedImg)
+            startActivity(intent)
+        }
+    }
+
     private fun startGallery() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
-        startActivity(intent)
-//        val chooser = Intent.createChooser(intent, "Choose a Picture")
-//        launcherIntentGallery.launch(chooser)
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
     }
 
     private fun startCamera() {
@@ -110,6 +129,34 @@ class CameraActivity : AppCompatActivity() {
             }
 
         }, ContextCompat.getMainExecutor(this))
+    }
+
+    private fun takePhoto() {
+        val imageCapture = this.imageCapture ?: return
+
+        val photoFile = createFile(application)
+
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(this),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onError(exception: ImageCaptureException) {
+                    Toast.makeText(
+                        this@CameraActivity,
+                        "Gagal mengambil gambar.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    val intent = Intent(this@CameraActivity, PreviewCaptureActivity::class.java)
+                    intent.putExtra("status", "camera")
+                    intent.putExtra("picture", photoFile)
+                    startActivity(intent)
+                }
+            }
+        )
     }
 
     override fun onRequestPermissionsResult(
