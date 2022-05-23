@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary_color"
             android:contentDescription="fab"
+            app:borderWidth="0dp"
             android:src="@drawable/ic_camera"
             android:tint="@android:color/white"
             app:layout_anchor="@id/bottom_app_bar"
