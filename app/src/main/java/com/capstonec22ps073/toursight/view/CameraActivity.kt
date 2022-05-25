@@ -19,8 +19,8 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.capstonec22ps073.toursight.databinding.ActivityCameraBinding
+import com.capstonec22ps073.toursight.util.LoadingDialog
 import com.capstonec22ps073.toursight.util.createFile
-import java.io.File
 import java.lang.Exception
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -134,6 +134,9 @@ class CameraActivity : AppCompatActivity() {
     private fun takePhoto() {
         val imageCapture = this.imageCapture ?: return
 
+        val loadingDialog = LoadingDialog(this)
+        loadingDialog.startDialogLoading()
+
         val photoFile = createFile(application)
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -142,6 +145,7 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exception: ImageCaptureException) {
+                    loadingDialog.dismissDialogLoading()
                     Toast.makeText(
                         this@CameraActivity,
                         "Gagal mengambil gambar.",
@@ -154,6 +158,7 @@ class CameraActivity : AppCompatActivity() {
                     intent.putExtra("status", "camera")
                     intent.putExtra("picture", photoFile)
                     startActivity(intent)
+                    loadingDialog.dismissDialogLoading()
                 }
             }
         )
