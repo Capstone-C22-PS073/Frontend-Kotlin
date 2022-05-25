@@ -2,6 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <runningDeviceTargetSelectedWithDropDown>
+    <targetSelectedWithDropDown>
       <Target>
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
@@ -11,7 +12,8 @@
           </Key>
         </deviceKey>
       </Target>
+    </targetSelectedWithDropDown>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-05-23T09:42:31.098296900Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-05-25T12:42:13.676745900Z" />
   </component>
 </project>

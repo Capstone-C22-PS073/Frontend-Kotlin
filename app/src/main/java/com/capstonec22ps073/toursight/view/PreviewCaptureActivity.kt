@@ -1,13 +1,18 @@
 package com.capstonec22ps073.toursight.view
 
+import android.R.attr.bitmap
 import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.media.ExifInterface
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.load.resource.bitmap.TransformationUtils.rotateImage
 import com.capstonec22ps073.toursight.databinding.ActivityPreviewCaptureBinding
 import com.capstonec22ps073.toursight.util.rotateBitmap
 import com.capstonec22ps073.toursight.util.uriToFile
@@ -15,6 +20,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.*
+
 
 class PreviewCaptureActivity : AppCompatActivity() {
     private var getFile: File? = null
@@ -39,10 +45,39 @@ class PreviewCaptureActivity : AppCompatActivity() {
         val myFile = intent.getSerializableExtra("picture") as File
         val isBackCamera = intent.getBooleanExtra("isBackCamera", true)
 
-        val result = rotateBitmap(
-            BitmapFactory.decodeFile(myFile.path),
-            isBackCamera
-        )
+        val result: Bitmap
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val ie = ExifInterface(myFile)
+
+            val orientation = ie.getAttributeInt(
+                ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED
+            )
+
+            result = when (orientation) {
+                ExifInterface.ORIENTATION_ROTATE_90 -> rotateImage(
+                    BitmapFactory.decodeFile(myFile.path),
+                    90
+                )
+                ExifInterface.ORIENTATION_ROTATE_180 -> rotateImage(
+                    BitmapFactory.decodeFile(myFile.path),
+                    180
+                )
+                ExifInterface.ORIENTATION_ROTATE_270 -> rotateImage(
+                    BitmapFactory.decodeFile(myFile.path),
+                    270
+                )
+                ExifInterface.ORIENTATION_NORMAL -> BitmapFactory.decodeFile(myFile.path)
+                else -> BitmapFactory.decodeFile(myFile.path)
+            }
+        } else {
+            result = rotateBitmap(
+                BitmapFactory.decodeFile(myFile.path),
+                isBackCamera
+            )
+        }
+
         showLoading(true)
         getFile = convertBitmapToFile(result)
         showLoading(false)
