@@ -1,8 +1,17 @@
 package com.capstonec22ps073.toursight.view
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.navigation.NavHostController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.capstonec22ps073.toursight.R
@@ -17,8 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.bottomNavigationView.background = null
-
-        setupNavigationController()
 
         binding.fabCamera.setOnClickListener {
             startActivity(Intent(this, CameraActivity::class.java))
