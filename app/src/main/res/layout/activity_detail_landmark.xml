@@ -21,11 +21,12 @@
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:translationZ="9dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/circle_gray"
+                android:padding="5dp"
                 android:src="@drawable/ic_arrow_back"
+                android:translationZ="9dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,10 +43,10 @@
                 android:id="@+id/img_main"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginBottom="35dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/rounded10"
                 android:clipToOutline="true"
                 android:scaleType="centerCrop"
@@ -58,15 +59,12 @@
                 android:id="@+id/container_content"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="-20dp"
                 android:background="@drawable/top_rounded10"
                 android:clipToOutline="true"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent=".62"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_background"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toBottomOf="@+id/img_background">
 
                 <TextView
                     android:id="@+id/tv_name"
@@ -183,9 +181,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus, viverra vitae congue eu, consequat ac felis donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus
 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus, viverra vitae congue eu, consequat ac felis donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus"
                     android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageView2"
                     app:layout_constraintTop_toBottomOf="@+id/description" />
