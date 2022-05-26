@@ -71,12 +71,50 @@
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+        <ImageView
+            android:id="@+id/rv_Culture1"
+            android:layout_width="57dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/shapes_button"
+            android:clipToOutline="true"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="225dp"
+            tools:srcCompat="@drawable/ic_baseline_map_24" />
+
+        <ImageView
+            android:id="@+id/rv_landmark1"
+            android:layout_width="61dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="196dp"
+            android:layout_marginEnd="70dp"
+            android:background="@drawable/shapes_button"
+            android:clipToOutline="true"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="225dp"
+            tools:srcCompat="@drawable/ic_baseline_apartment_24" />
+
+        <ImageView
+            android:id="@+id/rv_Food1"
+            android:layout_width="51dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="344dp"
+            android:background="@drawable/shapes_button"
+            android:clipToOutline="true"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="232dp"
+            tools:srcCompat="@drawable/ic_baseline_fastfood_24" />
+
         <TextView
             android:id="@+id/textView2"
             style="@style/TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="68dp"
             android:text="Find something interesting here!"
             app:layout_constraintStart_toStartOf="@+id/banner_home"
             app:layout_constraintTop_toBottomOf="@+id/banner_home" />
@@ -96,8 +134,10 @@
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
