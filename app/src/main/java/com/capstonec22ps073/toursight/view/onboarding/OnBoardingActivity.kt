@@ -19,7 +19,7 @@ import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.data.FirstInstallDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityOnBoardingBinding
 import com.capstonec22ps073.toursight.repository.FirstInstallRepository
-import com.capstonec22ps073.toursight.view.LoginActivity
+import com.capstonec22ps073.toursight.view.login.LoginActivity
 import com.capstonec22ps073.toursight.view.splash.MainViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "is_first_install")

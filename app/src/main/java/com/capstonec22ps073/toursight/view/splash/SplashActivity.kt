@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.capstonec22ps073.toursight.data.FirstInstallDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivitySplashBinding
 import com.capstonec22ps073.toursight.repository.FirstInstallRepository
-import com.capstonec22ps073.toursight.view.MainActivity
+import com.capstonec22ps073.toursight.view.main.MainActivity
 import com.capstonec22ps073.toursight.view.onboarding.OnBoardingActivity
 
 private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "is_first_install")

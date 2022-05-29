@@ -1,4 +1,4 @@
-package com.capstonec22ps073.toursight.view
+package com.capstonec22ps073.toursight.view.home
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -14,6 +14,7 @@ import com.capstonec22ps073.toursight.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.Landmark
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.databinding.FragmentHomeBinding
+import com.capstonec22ps073.toursight.view.DetailLandmarkActivity
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
