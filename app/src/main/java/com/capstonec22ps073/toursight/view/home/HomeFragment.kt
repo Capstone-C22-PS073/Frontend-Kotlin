@@ -99,8 +99,10 @@ class HomeFragment : Fragment() {
         binding.rvLandmark.isNestedScrollingEnabled = false
 
         listUserAdapter?.setOnItemClickCallback(object : LIstLandmarkAdapter.OnItemClickCallback {
-            override fun onItemClicked() {
+            override fun onItemClicked(culturalObject: CulturalObject) {
                 val intent = Intent(requireContext(), DetailLandmarkActivity::class.java)
+                intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
+                intent.putExtra(DetailLandmarkActivity.STATUS, "passing data")
                 startActivity(intent)
             }
         })

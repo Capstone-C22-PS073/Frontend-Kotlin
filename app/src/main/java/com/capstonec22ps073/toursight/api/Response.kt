@@ -1,6 +1,8 @@
 package com.capstonec22ps073.toursight.api
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class ResponseLogin(
 
@@ -25,6 +27,7 @@ data class ResponseRegister(
 	val msg: String?
 )
 
+@Parcelize
 data class CulturalObject(
 
 	@field:SerializedName("image")
@@ -44,7 +47,7 @@ data class CulturalObject(
 
 	@field:SerializedName("category")
 	val category: String? = null
-)
+): Parcelable
 
 data class ErrorResponse(
 	@field:SerializedName("message")

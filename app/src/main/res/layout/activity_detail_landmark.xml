@@ -72,11 +72,13 @@
                 <TextView
                     android:id="@+id/tv_name"
                     style="@style/HeaderText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/dummy_landmark_name"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -99,7 +101,7 @@
                     android:text="@string/built_on"
                     android:textColor="@color/secondary_text_Color"
                     app:layout_constraintStart_toStartOf="@+id/textView5"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -110,16 +112,18 @@
                     android:text="@string/category"
                     android:textColor="@color/secondary_text_Color"
                     app:layout_constraintStart_toStartOf="@+id/textView4"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_built" />
 
                 <TextView
                     android:id="@+id/tv_location"
                     style="@style/DescriptionText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/lorem2"
                     android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView5"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 

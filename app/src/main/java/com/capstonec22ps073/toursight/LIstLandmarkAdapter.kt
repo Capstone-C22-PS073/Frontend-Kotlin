@@ -22,23 +22,23 @@ class LIstLandmarkAdapter(private val listLandmark: List<CulturalObject>): Recyc
     }
 
     override fun onBindViewHolder(holder: LandmarkViewHolder, position: Int) {
-        val (image, name, _, _, description, _) = listLandmark[position]
+        val data = listLandmark[position]
 
-        holder.binding.tvItemName.text = name
-        holder.binding.tvItemDescription.text = description
+        holder.binding.tvItemName.text = data.name
+        holder.binding.tvItemDescription.text = data.deskripsi
 
         Glide.with(holder.itemView.context)
-            .load(image)
+            .load(data.image)
             .into(holder.binding.imgItemImage)
 
         holder.binding.imgItemImage.clipToOutline = true
 
-        holder.binding.imgItemImage.setOnClickListener { onItemClickCallback.onItemClicked() }
+        holder.binding.imgItemImage.setOnClickListener { onItemClickCallback.onItemClicked(data) }
     }
 
     override fun getItemCount(): Int = listLandmark.size
 
     interface OnItemClickCallback {
-        fun onItemClicked()
+        fun onItemClicked(culturalObject: CulturalObject)
     }
 }
