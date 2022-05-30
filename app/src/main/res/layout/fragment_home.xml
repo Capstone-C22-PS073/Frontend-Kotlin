@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Good Morning!"
+            android:text="@string/good_morning"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="-5dp"
-            android:text="Steven Grant"
+            android:text="@string/dummy_username"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
 
@@ -46,7 +46,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_username"
+            android:contentDescription="@string/banner_desc" />
 
         <TextView
             android:id="@+id/textView"
@@ -55,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
             android:layout_marginTop="32dp"
-            android:text="Start Capturing!"
+            android:text="@string/banner_title"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="@+id/banner_home"
             app:layout_constraintTop_toTopOf="@+id/banner_home" />
@@ -65,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="Start your journey by click the Camera Button to identify landmark around you"
+            android:text="@string/banner_desc"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="@+id/banner_home"
             app:layout_constraintStart_toStartOf="@+id/textView"
@@ -82,7 +83,8 @@
             android:src="@drawable/ic_culture"
             app:layout_constraintBottom_toBottomOf="@+id/rv_landmark1"
             app:layout_constraintEnd_toStartOf="@+id/rv_landmark1"
-            app:layout_constraintTop_toTopOf="@+id/rv_landmark1" />
+            app:layout_constraintTop_toTopOf="@+id/rv_landmark1"
+            android:contentDescription="@string/btn_culture_desc" />
 
         <ImageView
             android:id="@+id/rv_landmark1"
@@ -95,7 +97,8 @@
             android:src="@drawable/ic_landmark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner_home" />
+            app:layout_constraintTop_toBottomOf="@+id/banner_home"
+            android:contentDescription="@string/btn_landmark_desc" />
 
         <ImageView
             android:id="@+id/rv_Food1"
@@ -108,7 +111,8 @@
             android:src="@drawable/ic_food"
             app:layout_constraintBottom_toBottomOf="@+id/rv_landmark1"
             app:layout_constraintStart_toEndOf="@+id/rv_landmark1"
-            app:layout_constraintTop_toTopOf="@+id/rv_landmark1" />
+            app:layout_constraintTop_toTopOf="@+id/rv_landmark1"
+            android:contentDescription="@string/btn_food_desc" />
 
         <TextView
             android:id="@+id/textView2"
@@ -116,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Find something interesting here!"
+            android:text="@string/list_landmark_title"
             app:layout_constraintStart_toStartOf="@+id/banner_home"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -146,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Culture"
+            android:text="@string/culture"
             app:layout_constraintEnd_toEndOf="@+id/rv_Culture1"
             app:layout_constraintStart_toStartOf="@+id/rv_Culture1"
             app:layout_constraintTop_toBottomOf="@+id/rv_Culture1" />
@@ -157,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Landmark"
+            android:text="@string/landmark"
             app:layout_constraintEnd_toEndOf="@+id/rv_landmark1"
             app:layout_constraintStart_toStartOf="@+id/rv_landmark1"
             app:layout_constraintTop_toBottomOf="@+id/rv_landmark1" />
@@ -168,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Food"
+            android:text="@string/food"
             app:layout_constraintEnd_toEndOf="@+id/rv_Food1"
             app:layout_constraintStart_toStartOf="@+id/rv_Food1"
             app:layout_constraintTop_toBottomOf="@+id/rv_Food1" />

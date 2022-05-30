@@ -1,7 +1,9 @@
 package com.capstonec22ps073.toursight.view.profile
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +38,10 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this, AuthViewModelFactory(AuthRepository(pref))).get(
             ProfileViewModel::class.java
         )
+
+        binding.btnHistory.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
 
         binding.btnLogout.setOnClickListener {
             viewModel.removeUserToken()

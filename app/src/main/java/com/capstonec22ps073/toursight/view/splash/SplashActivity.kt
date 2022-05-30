@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.capstonec22ps073.toursight.data.FirstInstallDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivitySplashBinding
 import com.capstonec22ps073.toursight.repository.FirstInstallRepository
+import com.capstonec22ps073.toursight.view.MainViewModelFactory
 import com.capstonec22ps073.toursight.view.main.MainActivity
 import com.capstonec22ps073.toursight.view.onboarding.OnBoardingActivity
 

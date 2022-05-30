@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="Toursight"
+            android:text="@string/toursight"
             android:textColor="@color/primary_color"/>
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="Sign up to start your journey"/>
+            android:text="@string/sign_up_message"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_name_layout"
@@ -39,7 +39,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
-            android:hint="Name">
+            android:hint="@string/name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_name"
@@ -60,7 +60,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
-            android:hint="Email">
+            android:hint="@string/email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email"
@@ -104,7 +104,7 @@
             android:layout_marginEnd="24dp"
             android:fontFamily="@font/poppins_bold"
             app:cornerRadius="40dp"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
 
@@ -121,7 +121,7 @@
                 style="@style/DescriptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account?" />
+                android:text="@string/login_quesion" />
 
             <TextView
                 android:id="@+id/tv_btn_login"
@@ -129,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="@color/primary_color" />
 
         </LinearLayout>

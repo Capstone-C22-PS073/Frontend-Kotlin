@@ -20,7 +20,7 @@ import com.capstonec22ps073.toursight.data.FirstInstallDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityOnBoardingBinding
 import com.capstonec22ps073.toursight.repository.FirstInstallRepository
 import com.capstonec22ps073.toursight.view.login.LoginActivity
-import com.capstonec22ps073.toursight.view.splash.MainViewModelFactory
+import com.capstonec22ps073.toursight.view.MainViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "is_first_install")
 
@@ -42,7 +42,7 @@ class OnBoardingActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, MainViewModelFactory(FirstInstallRepository(pref))).get(
             OnBoardingViewModel::class.java
         )
-        
+
         binding.btnStarted.setOnClickListener {
             startActivity(Intent(this@OnBoardingActivity, LoginActivity::class.java))
             viewModel.saveUserStatusAsTrue()
@@ -54,13 +54,13 @@ class OnBoardingActivity : AppCompatActivity() {
             listOf(
                 OnBoardingItem(
                     R.drawable.ic_banner_onboarding1,
-                    "Capture All Landmark",
-                    "quickly recognise a landmark by using your camera phone."
+                    getString(R.string.onboarding_item_title1),
+                    getString(R.string.onboarding_item_desc1),
                 ),
                 OnBoardingItem(
                     R.drawable.ic_banner_onboarding2,
-                    "Gain Information",
-                    "gain information about the history and the data about it's landmark."
+                    getString(R.string.onboarding_item_title2),
+                    getString(R.string.onboarding_item_desc2),
                 ),
             )
         )

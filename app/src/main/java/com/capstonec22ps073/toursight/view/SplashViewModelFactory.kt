@@ -1,9 +1,10 @@
-package com.capstonec22ps073.toursight.view.splash
+package com.capstonec22ps073.toursight.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstonec22ps073.toursight.repository.FirstInstallRepository
 import com.capstonec22ps073.toursight.view.onboarding.OnBoardingViewModel
+import com.capstonec22ps073.toursight.view.splash.SplashViewModel
 
 class MainViewModelFactory(private val firstInstallRepository: FirstInstallRepository) :
     ViewModelProvider.NewInstanceFactory() {

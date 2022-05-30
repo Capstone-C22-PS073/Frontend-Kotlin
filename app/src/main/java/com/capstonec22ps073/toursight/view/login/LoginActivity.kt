@@ -13,6 +13,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.ApiConfig
 import com.capstonec22ps073.toursight.api.ResponseLogin
 import com.capstonec22ps073.toursight.data.AuthDataPreferences
@@ -101,7 +102,7 @@ class LoginActivity: AppCompatActivity() {
             override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
                 showLoading(false)
                 Log.e(TAG, "onFailure: ${t.message} fail")
-                showAlert("Gagal", "Terjadi kesalahan harap coba lagi nanti")
+                showAlert(getString(R.string.error), getString(R.string.error_something_went_wrong))
             }
         })
     }
@@ -109,11 +110,11 @@ class LoginActivity: AppCompatActivity() {
     private fun checkEmailValid(): Boolean {
         val emailText = binding.etEmail.text.toString()
         if (emailText.isEmpty()) {
-            binding.etEmailLayout.error = "Field can not be empty"
+            binding.etEmailLayout.error = getString(R.string.error_et_empty)
             return false
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-            binding.etEmailLayout.error = "Please enter a valid email address"
+            binding.etEmailLayout.error = getString(R.string.error_email_format)
             return false
         }
         return true
@@ -122,7 +123,7 @@ class LoginActivity: AppCompatActivity() {
     private fun checkPasswordValid(): Boolean {
         val passwordText = binding.etPassword.text.toString()
         if (passwordText.isEmpty()) {
-            binding.etPasswordLayout.error =  "Field can not be empty"
+            binding.etPasswordLayout.error =  getString(R.string.error_et_empty)
             return false
         }
         return true
