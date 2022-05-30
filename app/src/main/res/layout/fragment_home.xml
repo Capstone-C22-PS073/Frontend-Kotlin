@@ -73,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <ImageView
-            android:id="@+id/rv_Culture1"
+            android:id="@+id/btn_cultural"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="70dp"
@@ -81,13 +81,13 @@
             android:clipToOutline="true"
             android:padding="5dp"
             android:src="@drawable/ic_culture"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_landmark1"
-            app:layout_constraintEnd_toStartOf="@+id/rv_landmark1"
-            app:layout_constraintTop_toTopOf="@+id/rv_landmark1"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_landmark"
+            app:layout_constraintEnd_toStartOf="@+id/btn_landmark"
+            app:layout_constraintTop_toTopOf="@+id/btn_landmark"
             android:contentDescription="@string/btn_culture_desc" />
 
         <ImageView
-            android:id="@+id/rv_landmark1"
+            android:id="@+id/btn_landmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -101,7 +101,7 @@
             android:contentDescription="@string/btn_landmark_desc" />
 
         <ImageView
-            android:id="@+id/rv_Food1"
+            android:id="@+id/btn_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
@@ -109,9 +109,9 @@
             android:clipToOutline="true"
             android:padding="5dp"
             android:src="@drawable/ic_food"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_landmark1"
-            app:layout_constraintStart_toEndOf="@+id/rv_landmark1"
-            app:layout_constraintTop_toTopOf="@+id/rv_landmark1"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_landmark"
+            app:layout_constraintStart_toEndOf="@+id/btn_landmark"
+            app:layout_constraintTop_toTopOf="@+id/btn_landmark"
             android:contentDescription="@string/btn_food_desc" />
 
         <TextView
@@ -162,9 +162,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/culture"
-            app:layout_constraintEnd_toEndOf="@+id/rv_Culture1"
-            app:layout_constraintStart_toStartOf="@+id/rv_Culture1"
-            app:layout_constraintTop_toBottomOf="@+id/rv_Culture1" />
+            app:layout_constraintEnd_toEndOf="@+id/btn_cultural"
+            app:layout_constraintStart_toStartOf="@+id/btn_cultural"
+            app:layout_constraintTop_toBottomOf="@+id/btn_cultural" />
 
         <TextView
             android:id="@+id/textView7"
@@ -173,9 +173,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/landmark"
-            app:layout_constraintEnd_toEndOf="@+id/rv_landmark1"
-            app:layout_constraintStart_toStartOf="@+id/rv_landmark1"
-            app:layout_constraintTop_toBottomOf="@+id/rv_landmark1" />
+            app:layout_constraintEnd_toEndOf="@+id/btn_landmark"
+            app:layout_constraintStart_toStartOf="@+id/btn_landmark"
+            app:layout_constraintTop_toBottomOf="@+id/btn_landmark" />
 
         <TextView
             android:id="@+id/textView8"
@@ -184,9 +184,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/food"
-            app:layout_constraintEnd_toEndOf="@+id/rv_Food1"
-            app:layout_constraintStart_toStartOf="@+id/rv_Food1"
-            app:layout_constraintTop_toBottomOf="@+id/rv_Food1" />
+            app:layout_constraintEnd_toEndOf="@+id/btn_food"
+            app:layout_constraintStart_toStartOf="@+id/btn_food"
+            app:layout_constraintTop_toBottomOf="@+id/btn_food" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

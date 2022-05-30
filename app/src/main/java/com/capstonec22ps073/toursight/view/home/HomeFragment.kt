@@ -16,6 +16,7 @@ import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.databinding.FragmentHomeBinding
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.view.DetailLandmarkActivity
+import com.capstonec22ps073.toursight.view.category.CategoryActivity
 import com.capstonec22ps073.toursight.view.login.LoginActivity
 import com.capstonec22ps073.toursight.view.main.MainActivity
 import com.capstonec22ps073.toursight.view.main.MainViewModel
@@ -23,6 +24,7 @@ import com.capstonec22ps073.toursight.view.main.MainViewModel
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: MainViewModel
+    private var token = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +44,7 @@ class HomeFragment : Fragment() {
         viewModel.getUserToken().observe(viewLifecycleOwner) { token ->
             if (token != "") {
                 viewModel.getALlToursight(token)
+                this.token = token
             }
         }
 
@@ -79,8 +82,30 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-
         })
+
+        btnCategoryClickListener()
+    }
+
+    fun btnCategoryClickListener() {
+        binding.btnLandmark.setOnClickListener {
+            val intent = Intent(requireContext(), CategoryActivity::class.java)
+            intent.putExtra(CategoryActivity.TOKEN, token)
+            intent.putExtra(CategoryActivity.CATEGORY, "landmark")
+            startActivity(intent)
+        }
+        binding.btnCultural.setOnClickListener {
+            val intent = Intent(requireContext(), CategoryActivity::class.java)
+            intent.putExtra(CategoryActivity.TOKEN, token)
+            intent.putExtra(CategoryActivity.CATEGORY, "culture")
+            startActivity(intent)
+        }
+        binding.btnFood.setOnClickListener {
+            val intent = Intent(requireContext(), CategoryActivity::class.java)
+            intent.putExtra(CategoryActivity.TOKEN, token)
+            intent.putExtra(CategoryActivity.CATEGORY, "food")
+            startActivity(intent)
+        }
     }
 
     private fun hideProgressBar() {

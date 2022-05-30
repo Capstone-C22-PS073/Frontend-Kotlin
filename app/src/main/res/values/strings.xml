@@ -50,12 +50,12 @@
     <string name="icon_user_desc">Icon of user</string>
     <string name="onboarding_image_desc">Vector Image of On Boarding page</string>
     <string name="dummy_landmark_name" translatable="false">Monas</string>
-    <string name="error_et_empty" >Field can not be empty</string>
-    <string name="error_email_format" >Please enter a valid email address</string>
-    <string name="error_password_6char" >Password must have at least 6 characters</string>
-    <string name="error_something_went_wrong" >Something went wrong please try again later</string>
-    <string name="error" >Error</string>
-    <string name="success" >Success</string>
+    <string name="error_et_empty">Field can not be empty</string>
+    <string name="error_email_format">Please enter a valid email address</string>
+    <string name="error_password_6char">Password must have at least 6 characters</string>
+    <string name="error_something_went_wrong">Something went wrong please try again later</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
     <string name="success_signup_message">Your account has been successfully created, please return to the Login page to enter the application</string>
     <string name="onboarding_item_title1">Capture Cultural Object Around You</string>
     <string name="onboarding_item_title2">Gain Information</string>

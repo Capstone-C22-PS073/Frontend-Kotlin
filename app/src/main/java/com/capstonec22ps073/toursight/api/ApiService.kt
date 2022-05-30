@@ -24,4 +24,10 @@ interface ApiService {
     suspend fun getAllToursight(
         @Header("Authorization") token: String,
     ): Response<List<CulturalObject>>
+
+    @GET("category")
+    suspend fun getListCulturalObjectByCategory(
+        @Header("Authorization") token: String,
+        @Query("category") category: String,
+    ): Response<List<CulturalObject>>
 }
