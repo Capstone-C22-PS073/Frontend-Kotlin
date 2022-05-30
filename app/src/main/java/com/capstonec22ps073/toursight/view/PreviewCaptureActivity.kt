@@ -43,7 +43,6 @@ class PreviewCaptureActivity : AppCompatActivity() {
 
     private fun setImageFromCameraX() {
         val myFile = intent.getSerializableExtra("picture") as File
-        val isBackCamera = intent.getBooleanExtra("isBackCamera", true)
 
         val result: Bitmap
 
@@ -73,8 +72,7 @@ class PreviewCaptureActivity : AppCompatActivity() {
             }
         } else {
             result = rotateBitmap(
-                BitmapFactory.decodeFile(myFile.path),
-                isBackCamera
+                BitmapFactory.decodeFile(myFile.path)
             )
         }
 

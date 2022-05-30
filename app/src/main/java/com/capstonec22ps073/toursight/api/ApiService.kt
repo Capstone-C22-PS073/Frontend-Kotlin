@@ -1,9 +1,8 @@
 package com.capstonec22ps073.toursight.api
 
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.Response
+import retrofit2.http.*
 
 interface ApiService {
     @FormUrlEncoded
@@ -20,4 +19,9 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<ResponseLogin>
+
+    @GET("toursight")
+    suspend fun getAllToursight(
+        @Header("Authorization") token: String,
+    ): Response<List<CulturalObject>>
 }

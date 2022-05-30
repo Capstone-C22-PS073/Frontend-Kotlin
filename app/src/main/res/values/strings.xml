@@ -64,6 +64,7 @@
     <string name="error_show_camera">failed to bring up camera</string>
     <string name="error_take_picture">failed to take pictures</string>
     <string name="permission_not_granted">Permission not granted</string>
+    <string name="token_exp_message">Sorry, your session has expired.\nPlease re-login to continue</string>
 
     <string-array name="data_landmark_name">
         <item>Monas</item>

@@ -39,7 +39,7 @@ class ProfileFragment : Fragment() {
             ProfileViewModel::class.java
         )
 
-        binding.btnHistory.setOnClickListener {
+        binding.btnLanguage.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
 

@@ -57,4 +57,5 @@
     <string name="error_show_camera">Gagal memunculkan kamera</string>
     <string name="error_take_picture">Gagal mengambil gambar</string>
     <string name="permission_not_granted">Izin tidak diberikan</string>
+    <string name="token_exp_message">Sesi mu telah habis. Silahkan login kembali untuk melanjutkan</string>
 </resources>

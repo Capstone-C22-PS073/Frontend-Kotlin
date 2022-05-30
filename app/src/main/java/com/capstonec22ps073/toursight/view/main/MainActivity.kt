@@ -14,6 +14,7 @@ import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityMainBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
+import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
 import com.capstonec22ps073.toursight.view.AuthViewModelFactory
 import com.capstonec22ps073.toursight.view.CameraActivity
 import com.capstonec22ps073.toursight.view.login.LoginActivity
@@ -22,8 +23,8 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainViewModel
-    private var token = ""
+    lateinit var viewModel: MainViewModel
+    var token = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setupNavigationController()
 
         val pref = AuthDataPreferences.getInstance(dataStore)
-        viewModel = ViewModelProvider(this, AuthViewModelFactory(AuthRepository(pref))).get(
+        viewModel = ViewModelProvider(this, MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())).get(
             MainViewModel::class.java
         )
 

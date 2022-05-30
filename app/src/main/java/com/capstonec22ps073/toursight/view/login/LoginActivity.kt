@@ -15,6 +15,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.ApiConfig
+import com.capstonec22ps073.toursight.api.ErrorResponse
 import com.capstonec22ps073.toursight.api.ResponseLogin
 import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityLoginBinding
@@ -92,8 +93,8 @@ class LoginActivity: AppCompatActivity() {
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                     val gson = Gson()
-                    val type = object : TypeToken<ResponseLogin>() {}.type
-                    val errorResponse: ResponseLogin? = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    val type = object : TypeToken<ErrorResponse>() {}.type
+                    val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
                     Toast.makeText(this@LoginActivity, errorResponse?.msg, Toast.LENGTH_LONG)
                         .show()
                 }

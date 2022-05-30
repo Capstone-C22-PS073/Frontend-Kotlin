@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.ApiConfig
+import com.capstonec22ps073.toursight.api.ErrorResponse
 import com.capstonec22ps073.toursight.api.ResponseLogin
 import com.capstonec22ps073.toursight.api.ResponseRegister
 import com.capstonec22ps073.toursight.databinding.ActivityRegristerBinding
@@ -110,10 +111,10 @@ class RegisterActivity: AppCompatActivity() {
                         Log.e(TAG, "status: ${responseBody.msg}")
                     }
                 } else {
-                    Log.e(TAG, "onFailure: ${response.body()?.message}")
+                    Log.e(TAG, "onFailure: ${response.errorBody()}")
                     val gson = Gson()
-                    val type = object : TypeToken<ResponseRegister>() {}.type
-                    val errorResponse: ResponseRegister? = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    val type = object : TypeToken<ErrorResponse>() {}.type
+                    val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
                     Toast.makeText(this@RegisterActivity, "${errorResponse?.message}", Toast.LENGTH_LONG)
                         .show()
                 }

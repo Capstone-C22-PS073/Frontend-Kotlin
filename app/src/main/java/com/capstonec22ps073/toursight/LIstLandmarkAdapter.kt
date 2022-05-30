@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.databinding.ItemRowLandmarkBinding
 
-class LIstLandmarkAdapter(private val listLandmark: ArrayList<Landmark>): RecyclerView.Adapter<LIstLandmarkAdapter.LandmarkViewHolder>() {
+class LIstLandmarkAdapter(private val listLandmark: List<CulturalObject>): RecyclerView.Adapter<LIstLandmarkAdapter.LandmarkViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -21,13 +22,13 @@ class LIstLandmarkAdapter(private val listLandmark: ArrayList<Landmark>): Recycl
     }
 
     override fun onBindViewHolder(holder: LandmarkViewHolder, position: Int) {
-        val (name, description, photo) = listLandmark[position]
+        val (image, name, _, _, description, _) = listLandmark[position]
 
         holder.binding.tvItemName.text = name
         holder.binding.tvItemDescription.text = description
 
         Glide.with(holder.itemView.context)
-            .load(photo)
+            .load(image)
             .into(holder.binding.imgItemImage)
 
         holder.binding.imgItemImage.clipToOutline = true

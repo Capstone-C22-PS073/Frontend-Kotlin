@@ -18,15 +18,38 @@ data class ResponseLogin(
 
 	@field:SerializedName("refreshToken")
 	val refreshToken: String? = null,
-
-	@field:SerializedName("msg")
-	val msg: String? = null,
 )
 
 data class ResponseRegister(
 	@field:SerializedName("msg")
-	val msg: String?,
+	val msg: String?
+)
 
+data class CulturalObject(
+
+	@field:SerializedName("image")
+	val image: String? = null,
+
+	@field:SerializedName("name")
+	val name: String? = null,
+
+	@field:SerializedName("location")
+	val location: String? = null,
+
+	@field:SerializedName("id")
+	val id: Int? = null,
+
+	@field:SerializedName("deskripsi")
+	val deskripsi: String? = null,
+
+	@field:SerializedName("category")
+	val category: String? = null
+)
+
+data class ErrorResponse(
 	@field:SerializedName("message")
-	val message: String?
+	val message: String? = null,
+
+	@field:SerializedName("msg")
+	val msg: String? = null
 )
