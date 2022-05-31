@@ -3,19 +3,23 @@ package com.capstonec22ps073.toursight.view
 import android.R.attr.bitmap
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils.rotateImage
 import com.capstonec22ps073.toursight.databinding.ActivityPreviewCaptureBinding
+import com.capstonec22ps073.toursight.tflite.Classifier
 import com.capstonec22ps073.toursight.util.rotateBitmap
 import com.capstonec22ps073.toursight.util.uriToFile
+import org.tensorflow.lite.support.model.Model
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -26,10 +30,16 @@ class PreviewCaptureActivity : AppCompatActivity() {
     private var getFile: File? = null
     private lateinit var binding: ActivityPreviewCaptureBinding
 
+    private val inputSize = 128
+    private val modelPath = "model.tflite"
+    private val labelPath = "label.txt"
+    private lateinit var classifier: Classifier
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPreviewCaptureBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initClassifier()
 
         val status = intent.getStringExtra("status")
         if (status == "gallery") {
@@ -39,6 +49,17 @@ class PreviewCaptureActivity : AppCompatActivity() {
         }
 
         binding.btnCancel.setOnClickListener { finish() }
+        binding.btnUpload.setOnClickListener {
+            val bitmap = BitmapFactory.decodeFile(getFile?.path)
+            val result = classifier.recognizeImage(bitmap)
+
+            Log.d("Hasil Result ", result?.get(0)?.title.toString() + String.format(" Confidence : %.2f",(result?.get(0)?.confidence)))
+        }
+
+    }
+
+    private fun initClassifier(){
+        classifier = Classifier(assets, modelPath, labelPath, inputSize)
     }
 
     private fun setImageFromCameraX() {

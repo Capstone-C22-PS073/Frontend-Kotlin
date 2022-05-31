@@ -32,6 +32,12 @@ android {
     viewBinding {
         enabled = true
     }
+    buildFeatures {
+        mlModelBinding true
+    }
+    aaptOptions {
+        noCompress "tflite"
+    }
 }
 
 dependencies {
@@ -51,6 +57,9 @@ dependencies {
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.13.1'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.3.0'
 
     // camerax
     def camerax_version = "1.1.0-beta02"
