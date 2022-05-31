@@ -58,4 +58,6 @@
     <string name="error_take_picture">Gagal mengambil gambar</string>
     <string name="permission_not_granted">Izin tidak diberikan</string>
     <string name="token_exp_message">Sesi mu telah habis. Silahkan login kembali untuk melanjutkan</string>
+    <string name="search_hint">Cari...</string>
+    <string name="search_not_found">Pencarian tidak ditemukan</string>
 </resources>

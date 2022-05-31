@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonec22ps073.toursight.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
@@ -17,9 +17,9 @@ import com.capstonec22ps073.toursight.databinding.FragmentHomeBinding
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.view.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.category.CategoryActivity
-import com.capstonec22ps073.toursight.view.login.LoginActivity
 import com.capstonec22ps073.toursight.view.main.MainActivity
 import com.capstonec22ps073.toursight.view.main.MainViewModel
+import com.capstonec22ps073.toursight.view.search.SearchActivity
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        viewModel.toursights.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.toursights.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showProgressBar()
@@ -64,30 +64,34 @@ class HomeFragment : Fragment() {
                     response.message?.let { message ->
                         Log.e(TAG, "An error occured: $message")
                         if (message == "Token expired" || message == "Wrong Token or expired Token") {
-//                            AlertDialog.Builder(activity as MainActivity)
-//                                .setTitle(getString(R.string.error))
-//                                .setMessage(getString(R.string.token_exp_message))
-//                                .setCancelable(false)
-//                                .setPositiveButton("Ok") { _, _ ->
-////                                    activity?.let {
-//                                        val intent = Intent(requireContext(), LoginActivity::class.java)
-//                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                                        startActivity(intent)
-////                                        Log.e(TAG, "intent")
-////                                    }
-                                    Log.e(TAG, "Dialog on click")
-//                                }
-//                                .show()
+                            AlertDialog.Builder(activity as MainActivity)
+                                .setTitle(getString(R.string.error))
+                                .setMessage(getString(R.string.token_exp_message))
+                                .setCancelable(false)
+                                .setPositiveButton("Ok") { _, _ ->
+                                    activity?.let {
+                                        viewModel.removeUserEmail()
+                                        viewModel.removeUsername()
+                                        viewModel.removeUserToken()
+                                    }
+                                }
+                                .show()
+                        } else {
+                            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                         }
                     }
                 }
             }
-        })
+        }
 
         btnCategoryClickListener()
+
+        binding.btnSearch.setOnClickListener {
+            startActivity(Intent(requireContext(), SearchActivity::class.java))
+        }
     }
 
-    fun btnCategoryClickListener() {
+    private fun btnCategoryClickListener() {
         binding.btnLandmark.setOnClickListener {
             val intent = Intent(requireContext(), CategoryActivity::class.java)
             intent.putExtra(CategoryActivity.TOKEN, token)

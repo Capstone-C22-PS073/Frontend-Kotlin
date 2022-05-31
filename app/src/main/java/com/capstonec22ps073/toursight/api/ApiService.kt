@@ -30,4 +30,10 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("category") category: String,
     ): Response<List<CulturalObject>>
+
+    @GET("search")
+    suspend fun getListCulturalObjectBySearch(
+        @Header("Authorization") token: String,
+        @Query("keyword") keyword: String,
+    ): Response<List<CulturalObject>>
 }

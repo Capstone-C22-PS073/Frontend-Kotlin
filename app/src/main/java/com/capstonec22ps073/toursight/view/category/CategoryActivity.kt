@@ -1,21 +1,31 @@
 package com.capstonec22ps073.toursight.view.category
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonec22ps073.toursight.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
+import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityCategoryBinding
+import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
 import com.capstonec22ps073.toursight.util.Resource
-import com.capstonec22ps073.toursight.view.CulturalObjectViewModelProvider
 import com.capstonec22ps073.toursight.view.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.home.HomeFragment
+import com.capstonec22ps073.toursight.view.main.MainViewModelFactory
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "auth")
 
 class CategoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCategoryBinding
@@ -37,9 +47,10 @@ class CategoryActivity : AppCompatActivity() {
         actionbar!!.title = getToolbarTitle(category)
         actionbar.setDisplayHomeAsUpEnabled(true)
 
+        val pref = AuthDataPreferences.getInstance(dataStore)
         viewModel = ViewModelProvider(
             this,
-            CulturalObjectViewModelProvider(CulturalObjectRepository())
+            MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())
         ).get(
             CategoryViewModel::class.java
         )
@@ -63,6 +74,18 @@ class CategoryActivity : AppCompatActivity() {
                     hideProgressBar()
                     response.message?.let { message ->
                         Log.e(HomeFragment.TAG, "An error occured: $message")
+                        if (message == "Token expired" || message == "Wrong Token or expired Token") {
+                            AlertDialog.Builder(this)
+                                .setTitle(getString(R.string.error))
+                                .setMessage(getString(R.string.token_exp_message))
+                                .setCancelable(false)
+                                .setPositiveButton("Ok") { _, _ ->
+                                        viewModel.removeUserDataFromDataStore()
+                                }
+                                .show()
+                        } else {
+                            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
             }

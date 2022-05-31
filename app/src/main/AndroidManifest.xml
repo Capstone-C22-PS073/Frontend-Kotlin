@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Toursight"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.search.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.category.CategoryActivity"
             android:exported="false" />
         <activity

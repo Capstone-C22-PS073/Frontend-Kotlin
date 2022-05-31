@@ -10,4 +10,6 @@ class CulturalObjectRepository() {
         ApiConfig.getApiService()
             .getListCulturalObjectByCategory(token = "Bearer $token", category = category)
 
+    suspend fun getCulturalObjectBasedOnSearch(token: String, keySearch: String) =
+        ApiConfig.getApiService().getListCulturalObjectBySearch("Bearer $token", keySearch)
 }

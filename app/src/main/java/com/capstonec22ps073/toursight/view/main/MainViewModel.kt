@@ -31,10 +31,13 @@ class MainViewModel(
                 return Resource.Success(resultResponse)
             }
         }
-        val gson = Gson()
-        val type = object : TypeToken<ErrorResponse>() {}.type
-        val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
-        return Resource.Error(errorResponse?.message!!)
+        if (response.message() == "Unauthorized") {
+            val gson = Gson()
+            val type = object : TypeToken<ErrorResponse>() {}.type
+            val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
+            return Resource.Error(errorResponse?.message!!)
+        }
+        return Resource.Error(response.message())
     }
 
     fun getUserToken(): LiveData<String> {
