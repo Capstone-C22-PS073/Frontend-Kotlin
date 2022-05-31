@@ -18,6 +18,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.databinding.ActivityCameraBinding
 import com.capstonec22ps073.toursight.util.LoadingDialog
 import com.capstonec22ps073.toursight.util.createFile
@@ -125,7 +126,7 @@ class CameraActivity : AppCompatActivity() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                Toast.makeText(this, "Gagal memunculkan kamera", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.error_show_camera), Toast.LENGTH_SHORT).show()
             }
 
         }, ContextCompat.getMainExecutor(this))
@@ -148,7 +149,7 @@ class CameraActivity : AppCompatActivity() {
                     loadingDialog.dismissDialogLoading()
                     Toast.makeText(
                         this@CameraActivity,
-                        "Gagal mengambil gambar.",
+                        getString(R.string.error_take_picture),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -174,7 +175,7 @@ class CameraActivity : AppCompatActivity() {
             if (!allPermissionsGranted()) {
                 Toast.makeText(
                     this,
-                    "Tidak mendapatkan permission.",
+                    getString(R.string.permission_not_granted),
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()
