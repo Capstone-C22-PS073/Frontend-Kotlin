@@ -40,6 +40,7 @@ class SplashActivity : AppCompatActivity() {
                     Intent(this, OnBoardingActivity::class.java)
                 }
                 startActivity(intent)
+                finish()
             }
         }
     }

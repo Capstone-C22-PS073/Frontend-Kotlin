@@ -131,7 +131,7 @@ class HomeFragment : Fragment() {
             override fun onItemClicked(culturalObject: CulturalObject) {
                 val intent = Intent(requireContext(), DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
-                intent.putExtra(DetailLandmarkActivity.STATUS, "passing data")
+                intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
                 startActivity(intent)
             }
         })

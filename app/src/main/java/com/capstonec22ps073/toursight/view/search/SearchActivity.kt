@@ -78,7 +78,7 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener, Vie
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e("SearchActivity", "An error occured: $message")
+                        Log.e(TAG, "An error occured: $message")
                         if (message == "Token expired" || message == "Wrong Token or expired Token") {
                             AlertDialog.Builder(this)
                                 .setTitle(getString(R.string.error))
@@ -154,7 +154,7 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener, Vie
             override fun onItemClicked(culturalObject: CulturalObject) {
                 val intent = Intent(this@SearchActivity, DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
-                intent.putExtra(DetailLandmarkActivity.STATUS, "passing data")
+                intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
                 startActivity(intent)
             }
         })

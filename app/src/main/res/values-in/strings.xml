@@ -63,4 +63,7 @@
     <string name="icon_history">ikon sejarah</string>
     <string name="history">Sejarah</string>
     <string name="go_to_maps">Temukan Lokasi</string>
+    <string name="close">Tutup</string>
+    <string name="image_recognition_failed_title">Pengenalan Gambar Gagal</string>
+    <string name="image_recognition_failed_message">pastikan objek dari gambar merupakan landmark atau bangunan, makanan, atau objek kultural lainnya</string>
 </resources>

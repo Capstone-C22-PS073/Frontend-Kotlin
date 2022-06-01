@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.databinding.ActivityDetailLandmarkBinding
+import com.capstonec22ps073.toursight.view.main.MainActivity
 
 class DetailLandmarkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailLandmarkBinding
@@ -23,17 +24,22 @@ class DetailLandmarkActivity : AppCompatActivity() {
         binding.containerContent.clipToOutline = true
 
         val culturalObject = intent.getParcelableExtra<CulturalObject>(DATA)
-        val dataStatus = intent.getStringExtra(STATUS)
+        val source = intent.getStringExtra(SOURCE)
 
-        if (dataStatus == "passing data") {
-            setData(culturalObject!!)
-        }
+        setData(culturalObject!!)
 
         binding.btnBack.setOnClickListener {
-            finish()
+            if (source == "camera") {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.putExtra("HOME", true)
+                startActivity(intent)
+            } else {
+                finish()
+            }
         }
 
-        setButtonFindLocation(culturalObject!!)
+        setButtonFindLocation(culturalObject)
     }
 
     private fun setButtonFindLocation(culturalObject: CulturalObject) {
@@ -96,6 +102,6 @@ class DetailLandmarkActivity : AppCompatActivity() {
 
     companion object {
         const val DATA = "data"
-        const val STATUS = "status"
+        const val SOURCE = "source"
     }
 }

@@ -22,6 +22,7 @@ import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.databinding.ActivityCameraBinding
 import com.capstonec22ps073.toursight.util.LoadingDialog
 import com.capstonec22ps073.toursight.util.createFile
+import com.capstonec22ps073.toursight.view.preview.PreviewCaptureActivity
 import java.lang.Exception
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
