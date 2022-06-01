@@ -60,4 +60,7 @@
     <string name="token_exp_message">Sesi mu telah habis. Silahkan login kembali untuk melanjutkan</string>
     <string name="search_hint">Cari...</string>
     <string name="search_not_found">Pencarian tidak ditemukan</string>
+    <string name="icon_history">ikon sejarah</string>
+    <string name="history">Sejarah</string>
+    <string name="go_to_maps">Temukan Lokasi</string>
 </resources>

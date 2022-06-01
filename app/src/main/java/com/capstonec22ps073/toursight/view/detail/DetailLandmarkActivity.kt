@@ -1,8 +1,11 @@
-package com.capstonec22ps073.toursight.view
+package com.capstonec22ps073.toursight.view.detail
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.capstonec22ps073.toursight.R
@@ -29,6 +32,27 @@ class DetailLandmarkActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             finish()
         }
+
+        setButtonFindLocation(culturalObject!!)
+    }
+
+    private fun setButtonFindLocation(culturalObject: CulturalObject) {
+        if (culturalObject.category == "Landmark") {
+            binding.btnMaps.visibility = View.VISIBLE
+            binding.btnMaps.setOnClickListener { goToGmaps(culturalObject.location!!) }
+        } else {
+            binding.btnMaps.visibility = View.GONE
+        }
+    }
+
+    private fun goToGmaps(mapLink: String) {
+        val zoomLevel = 5
+        val gmmIntentUri = Uri.parse("${mapLink}&z=$zoomLevel")
+
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+
+        startActivity(mapIntent)
     }
 
     private fun setData(culturalObject: CulturalObject) {
@@ -45,9 +69,10 @@ class DetailLandmarkActivity : AppCompatActivity() {
 
         binding.apply {
             tvName.text = culturalObject.name
-            tvLocation.text = culturalObject.location
+            tvLocation.text = culturalObject.city
             tvDescription.text = culturalObject.deskripsi
             tvCategory.text = culturalObject.category
+            tvHistory.text = culturalObject.history.toString()
         }
         setCategoryBackgroundColor(culturalObject.category!!)
     }
@@ -55,13 +80,16 @@ class DetailLandmarkActivity : AppCompatActivity() {
     private fun setCategoryBackgroundColor(category: String) {
         when (category) {
             "Landmark" -> {
-                binding.tvCategory.backgroundTintList = ContextCompat.getColorStateList(this, R.color.tertiary_color)
+                binding.tvCategory.backgroundTintList =
+                    ContextCompat.getColorStateList(this, R.color.tertiary_color)
             }
             "Food" -> {
-                binding.tvCategory.backgroundTintList = ContextCompat.getColorStateList(this, R.color.quaternary_color)
+                binding.tvCategory.backgroundTintList =
+                    ContextCompat.getColorStateList(this, R.color.quaternary_color)
             }
             else -> {
-                binding.tvCategory.backgroundTintList = ContextCompat.getColorStateList(this, R.color.secondary_color)
+                binding.tvCategory.backgroundTintList =
+                    ContextCompat.getColorStateList(this, R.color.secondary_color)
             }
         }
     }

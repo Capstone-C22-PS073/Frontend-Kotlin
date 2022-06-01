@@ -24,7 +24,7 @@ import com.capstonec22ps073.toursight.databinding.ActivitySearchBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
 import com.capstonec22ps073.toursight.util.Resource
-import com.capstonec22ps073.toursight.view.DetailLandmarkActivity
+import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.login.LoginActivity
 import com.capstonec22ps073.toursight.view.main.MainViewModelFactory
 import java.util.ArrayList

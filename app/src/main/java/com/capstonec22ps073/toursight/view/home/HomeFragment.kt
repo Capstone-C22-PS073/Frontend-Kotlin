@@ -15,7 +15,7 @@ import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.databinding.FragmentHomeBinding
 import com.capstonec22ps073.toursight.util.Resource
-import com.capstonec22ps073.toursight.view.DetailLandmarkActivity
+import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.category.CategoryActivity
 import com.capstonec22ps073.toursight.view.main.MainActivity
 import com.capstonec22ps073.toursight.view.main.MainViewModel

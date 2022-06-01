@@ -46,7 +46,13 @@ data class CulturalObject(
 	val deskripsi: String? = null,
 
 	@field:SerializedName("category")
-	val category: String? = null
+	val category: String? = null,
+
+	@field:SerializedName("city")
+	val city: String? = null,
+
+	@field:SerializedName("history")
+	val history: String? = null
 ): Parcelable
 
 data class ErrorResponse(
