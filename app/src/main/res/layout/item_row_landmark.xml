@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:layout_marginTop="10dp"
     android:layout_marginLeft="24dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="5dp"
     android:layout_marginRight="24dp"
     android:elevation="20dp"
     app:cardCornerRadius="10dp">
@@ -31,7 +32,8 @@
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@tools:sample/avatars"
+            android:contentDescription="@string/img_landmark_desc" />
 
         <TextView
             android:id="@+id/tv_item_name"

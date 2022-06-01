@@ -4,11 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="view.HomeFragment">
+    tools:context=".view.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_btn_search"
+            android:clipToOutline="true"
+            android:src="@drawable/ic_search"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_greeting" />
 
         <TextView
             android:id="@+id/tv_greeting"
@@ -17,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Good Morning!"
+            android:text="@string/good_morning"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="-5dp"
-            android:text="Steven Grant"
+            android:text="@string/dummy_username"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
 
@@ -46,7 +59,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_username"
+            android:contentDescription="@string/banner_desc" />
 
         <TextView
             android:id="@+id/textView"
@@ -55,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
             android:layout_marginTop="32dp"
-            android:text="Start Capturing!"
+            android:text="@string/banner_title"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="@+id/banner_home"
             app:layout_constraintTop_toTopOf="@+id/banner_home" />
@@ -65,14 +79,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="Start your journey by click the Camera Button to identify landmark around you"
+            android:text="@string/banner_desc"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="@+id/banner_home"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <ImageView
-            android:id="@+id/rv_Culture1"
+            android:id="@+id/btn_cultural"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="70dp"
@@ -80,12 +94,13 @@
             android:clipToOutline="true"
             android:padding="5dp"
             android:src="@drawable/ic_culture"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_landmark1"
-            app:layout_constraintEnd_toStartOf="@+id/rv_landmark1"
-            app:layout_constraintTop_toTopOf="@+id/rv_landmark1" />
+            app:layout_constraintBottom_toBottomOf="@+id/btn_landmark"
+            app:layout_constraintEnd_toStartOf="@+id/btn_landmark"
+            app:layout_constraintTop_toTopOf="@+id/btn_landmark"
+            android:contentDescription="@string/btn_culture_desc" />
 
         <ImageView
-            android:id="@+id/rv_landmark1"
+            android:id="@+id/btn_landmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -95,10 +110,11 @@
             android:src="@drawable/ic_landmark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner_home" />
+            app:layout_constraintTop_toBottomOf="@+id/banner_home"
+            android:contentDescription="@string/btn_landmark_desc" />
 
         <ImageView
-            android:id="@+id/rv_Food1"
+            android:id="@+id/btn_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
@@ -106,9 +122,10 @@
             android:clipToOutline="true"
             android:padding="5dp"
             android:src="@drawable/ic_food"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_landmark1"
-            app:layout_constraintStart_toEndOf="@+id/rv_landmark1"
-            app:layout_constraintTop_toTopOf="@+id/rv_landmark1" />
+            app:layout_constraintBottom_toBottomOf="@+id/btn_landmark"
+            app:layout_constraintStart_toEndOf="@+id/btn_landmark"
+            app:layout_constraintTop_toTopOf="@+id/btn_landmark"
+            android:contentDescription="@string/btn_food_desc" />
 
         <TextView
             android:id="@+id/textView2"
@@ -116,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Find something interesting here!"
+            android:text="@string/list_landmark_title"
             app:layout_constraintStart_toStartOf="@+id/banner_home"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -131,7 +148,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_landmark"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -140,16 +157,27 @@
             app:layout_constraintTop_toBottomOf="@+id/view"
             app:layout_constraintVertical_bias="1.0" />
 
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/rv_landmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
         <TextView
             android:id="@+id/textView6"
             style="@style/DescriptionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Culture"
-            app:layout_constraintEnd_toEndOf="@+id/rv_Culture1"
-            app:layout_constraintStart_toStartOf="@+id/rv_Culture1"
-            app:layout_constraintTop_toBottomOf="@+id/rv_Culture1" />
+            android:text="@string/culture"
+            app:layout_constraintEnd_toEndOf="@+id/btn_cultural"
+            app:layout_constraintStart_toStartOf="@+id/btn_cultural"
+            app:layout_constraintTop_toBottomOf="@+id/btn_cultural" />
 
         <TextView
             android:id="@+id/textView7"
@@ -157,10 +185,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Landmark"
-            app:layout_constraintEnd_toEndOf="@+id/rv_landmark1"
-            app:layout_constraintStart_toStartOf="@+id/rv_landmark1"
-            app:layout_constraintTop_toBottomOf="@+id/rv_landmark1" />
+            android:text="@string/landmark"
+            app:layout_constraintEnd_toEndOf="@+id/btn_landmark"
+            app:layout_constraintStart_toStartOf="@+id/btn_landmark"
+            app:layout_constraintTop_toBottomOf="@+id/btn_landmark" />
 
         <TextView
             android:id="@+id/textView8"
@@ -168,10 +196,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Food"
-            app:layout_constraintEnd_toEndOf="@+id/rv_Food1"
-            app:layout_constraintStart_toStartOf="@+id/rv_Food1"
-            app:layout_constraintTop_toBottomOf="@+id/rv_Food1" />
+            android:text="@string/food"
+            app:layout_constraintEnd_toEndOf="@+id/btn_food"
+            app:layout_constraintStart_toStartOf="@+id/btn_food"
+            app:layout_constraintTop_toBottomOf="@+id/btn_food" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

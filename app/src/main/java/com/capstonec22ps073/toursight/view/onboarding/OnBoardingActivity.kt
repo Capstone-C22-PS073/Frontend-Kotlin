@@ -1,22 +1,33 @@
-package com.capstonec22ps073.toursight.view
+package com.capstonec22ps073.toursight.view.onboarding
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import android.widget.LinearLayout
-//import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.capstonec22ps073.toursight.OnBoardingAdapter
 import com.capstonec22ps073.toursight.OnBoardingItem
 import com.capstonec22ps073.toursight.R
+import com.capstonec22ps073.toursight.data.FirstInstallDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityOnBoardingBinding
+import com.capstonec22ps073.toursight.repository.FirstInstallRepository
+import com.capstonec22ps073.toursight.view.login.LoginActivity
+import com.capstonec22ps073.toursight.view.MainViewModelFactory
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "is_first_install")
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding
     private lateinit var onBoardingAdapter: OnBoardingAdapter
+    private lateinit var viewModel: OnBoardingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +37,15 @@ class OnBoardingActivity : AppCompatActivity() {
         setOnBoardingItems()
         setIndicators()
         setCurrentIndicator(0)
-        
+
+        val pref = FirstInstallDataPreferences.getInstance(dataStore)
+        viewModel = ViewModelProvider(this, MainViewModelFactory(FirstInstallRepository(pref))).get(
+            OnBoardingViewModel::class.java
+        )
+
         binding.btnStarted.setOnClickListener {
             startActivity(Intent(this@OnBoardingActivity, LoginActivity::class.java))
+            viewModel.saveUserStatusAsTrue()
         }
     }
 
@@ -37,13 +54,13 @@ class OnBoardingActivity : AppCompatActivity() {
             listOf(
                 OnBoardingItem(
                     R.drawable.ic_banner_onboarding1,
-                    "Capture All Landmark",
-                    "quickly recognise a landmark by using your camera phone."
+                    getString(R.string.onboarding_item_title1),
+                    getString(R.string.onboarding_item_desc1),
                 ),
                 OnBoardingItem(
                     R.drawable.ic_banner_onboarding2,
-                    "Gain Information",
-                    "gain information about the history and the data about it's landmark."
+                    getString(R.string.onboarding_item_title2),
+                    getString(R.string.onboarding_item_desc2),
                 ),
             )
         )

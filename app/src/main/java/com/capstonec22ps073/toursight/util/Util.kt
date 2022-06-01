@@ -35,7 +35,7 @@ fun createFile(application: Application): File {
     return File(outputDirectory, "$timeStamp.jpg")
 }
 
-fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
+fun rotateBitmap(bitmap: Bitmap): Bitmap {
     val matrix = Matrix()
     matrix.postRotate(90f)
     return Bitmap.createBitmap(
