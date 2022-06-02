@@ -1,4 +1,4 @@
-package com.capstonec22ps073.toursight
+package com.capstonec22ps073.toursight.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

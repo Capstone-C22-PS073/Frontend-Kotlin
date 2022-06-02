@@ -73,3 +73,20 @@ data class UploadImageResponse(
     @field:SerializedName("image")
     val image: String? = null
 )
+
+data class ImageUploadedByUser(
+    @field:SerializedName("id")
+    val id: Int,
+
+    @field:SerializedName("uploadedBy")
+    val uploadedBy: String,
+
+    @field:SerializedName("image")
+    val image: String,
+
+    @field:SerializedName("createdAt")
+    val createdAt: String,
+
+    @field:SerializedName("updatedAt")
+    val updatedAt: String
+)

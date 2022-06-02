@@ -13,6 +13,7 @@
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_camera.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_category.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_detail_landmark.xml" value="0.36779911373707536" />
+        <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_history_image_history.xml" value="0.24818840579710144" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_on_boarding.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/activity_preview_capture.xml" value="0.19429347826086957" />
@@ -22,6 +23,7 @@
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/error_dialog_item.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/fragment_home.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/fragment_profile.xml" value="0.19429347826086957" />
+        <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/item_row_image_uploaded_by_user.xml" value="0.4574468085106383" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/item_row_landmark.xml" value="0.19429347826086957" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/loading_dialog_item.xml" value="0.536" />
         <entry key="..\:/AndroidStudioProject/Toursight/app/src/main/res/layout/onboarding_item_container.xml" value="0.19429347826086957" />

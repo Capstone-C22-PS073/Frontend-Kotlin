@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Toursight"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.history.HistoryImageActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.search.SearchActivity"
             android:exported="false" />
         <activity
@@ -36,7 +39,7 @@
             android:name=".view.preview.PreviewCaptureActivity"
             android:exported="false" />
         <activity
-            android:name=".view.CameraActivity"
+            android:name=".view.camera.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".view.detail.DetailLandmarkActivity"

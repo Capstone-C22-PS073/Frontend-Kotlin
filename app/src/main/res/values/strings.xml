@@ -73,6 +73,7 @@
     <string name="close">Close</string>
     <string name="image_recognition_failed_title">Image Recognition Failed</string>
     <string name="image_recognition_failed_message">make sure the object is a landmark or building, food, or a cultural object</string>
+    <string name="uploaded_at" >Uploaded at: %s</string>
 
     <string-array name="data_landmark_name">
         <item>Monas</item>

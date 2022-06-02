@@ -20,4 +20,7 @@ class CulturalObjectRepository {
 
     suspend fun uploadImage(token: String, imageMultipart: MultipartBody.Part, username: RequestBody) =
         ApiConfig.getApiService().uploadImage("Bearer $token", username, imageMultipart)
+
+    suspend fun getImageUploadedByUser(token: String, username: String) =
+        ApiConfig.getApiService().getListImageUploadedByUser("Bearer $token", username)
 }

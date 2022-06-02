@@ -53,4 +53,10 @@ interface ApiService {
         @Part("username") username: RequestBody,
         @Part image: MultipartBody.Part,
     ): Response<UploadImageResponse>
+
+    @GET("imageuser")
+    suspend fun getListImageUploadedByUser(
+        @Header("Authorization") token: String,
+        @Query("username") username: String,
+    ): Response<List<ImageUploadedByUser>>
 }

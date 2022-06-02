@@ -1,4 +1,4 @@
-package com.capstonec22ps073.toursight.view
+package com.capstonec22ps073.toursight.view.camera
 
 import android.Manifest
 import android.content.Intent

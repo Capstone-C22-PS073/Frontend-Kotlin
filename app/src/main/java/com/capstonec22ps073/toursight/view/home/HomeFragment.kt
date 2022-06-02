@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstonec22ps073.toursight.LIstLandmarkAdapter
+import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.databinding.FragmentHomeBinding

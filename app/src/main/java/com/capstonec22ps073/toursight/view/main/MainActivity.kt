@@ -15,8 +15,7 @@ import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityMainBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
-import com.capstonec22ps073.toursight.view.AuthViewModelFactory
-import com.capstonec22ps073.toursight.view.CameraActivity
+import com.capstonec22ps073.toursight.view.camera.CameraActivity
 import com.capstonec22ps073.toursight.view.login.LoginActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "auth")

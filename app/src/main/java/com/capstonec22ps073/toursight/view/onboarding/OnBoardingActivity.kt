@@ -13,8 +13,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import com.capstonec22ps073.toursight.OnBoardingAdapter
-import com.capstonec22ps073.toursight.OnBoardingItem
+import com.capstonec22ps073.toursight.adapter.OnBoardingAdapter
+import com.capstonec22ps073.toursight.model.OnBoardingItem
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.data.FirstInstallDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityOnBoardingBinding

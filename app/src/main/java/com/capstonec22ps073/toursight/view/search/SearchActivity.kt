@@ -16,7 +16,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstonec22ps073.toursight.LIstLandmarkAdapter
+import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.data.AuthDataPreferences

@@ -8,12 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.capstonec22ps073.toursight.databinding.FragmentProfileBinding
+import com.capstonec22ps073.toursight.view.history.HistoryImageActivity
 import com.capstonec22ps073.toursight.view.main.MainActivity
 import com.capstonec22ps073.toursight.view.main.MainViewModel
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: MainViewModel
+
+    private var token = ""
+    private var username = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +32,18 @@ class ProfileFragment : Fragment() {
 
         viewModel = (activity as MainActivity).viewModel
 
+        viewModel.getUsername().observe(requireActivity()) { username ->
+            if (username != "") {
+                this.username = username
+            }
+        }
+
+        viewModel.getUserToken().observe(requireActivity()) { token ->
+            if (token != "") {
+                this.token = token
+            }
+        }
+
         binding.btnLanguage.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
@@ -39,6 +55,13 @@ class ProfileFragment : Fragment() {
         }
 
         setUserData()
+
+        binding.btnHistory.setOnClickListener {
+            val intent = Intent(requireContext(), HistoryImageActivity::class.java)
+            intent.putExtra(HistoryImageActivity.TOKEN, this.token)
+            intent.putExtra(HistoryImageActivity.USERNAME, this.username)
+            startActivity(intent)
+        }
     }
 
     private fun setUserData() {
