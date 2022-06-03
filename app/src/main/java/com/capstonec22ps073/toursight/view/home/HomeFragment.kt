@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstonec22ps073.toursight.LIstLandmarkAdapter
+import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.databinding.FragmentHomeBinding
 import com.capstonec22ps073.toursight.util.Resource
-import com.capstonec22ps073.toursight.view.DetailLandmarkActivity
+import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.category.CategoryActivity
 import com.capstonec22ps073.toursight.view.main.MainActivity
 import com.capstonec22ps073.toursight.view.main.MainViewModel
@@ -131,7 +131,7 @@ class HomeFragment : Fragment() {
             override fun onItemClicked(culturalObject: CulturalObject) {
                 val intent = Intent(requireContext(), DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
-                intent.putExtra(DetailLandmarkActivity.STATUS, "passing data")
+                intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
                 startActivity(intent)
             }
         })

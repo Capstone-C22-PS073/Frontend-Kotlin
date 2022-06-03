@@ -1,7 +1,6 @@
-package com.capstonec22ps073.toursight.view.category
+package com.capstonec22ps073.toursight.view.history
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,104 +12,87 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
-import com.capstonec22ps073.toursight.api.CulturalObject
+import com.capstonec22ps073.toursight.adapter.ListImageAdapter
+import com.capstonec22ps073.toursight.api.ImageUploadedByUser
 import com.capstonec22ps073.toursight.data.AuthDataPreferences
-import com.capstonec22ps073.toursight.databinding.ActivityCategoryBinding
+import com.capstonec22ps073.toursight.databinding.ActivityHistoryImageHistoryBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
 import com.capstonec22ps073.toursight.util.Resource
-import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
-import com.capstonec22ps073.toursight.view.home.HomeFragment
 import com.capstonec22ps073.toursight.view.main.MainViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "auth")
 
-class CategoryActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCategoryBinding
-    private lateinit var viewModel: CategoryViewModel
+class HistoryImageActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHistoryImageHistoryBinding
+    private lateinit var viewModel: HistoryImageViewModel
 
     private var token = ""
-    private var category = ""
+    private var username = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCategoryBinding.inflate(layoutInflater)
+        binding = ActivityHistoryImageHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        token = intent.getStringExtra(TOKEN) as String
-        category = intent.getStringExtra(CATEGORY) as String
 
         setSupportActionBar(binding.toolbar)
         val actionbar = supportActionBar
-        actionbar!!.title = getToolbarTitle(category)
+        actionbar!!.title = "Image Uploaded"
         actionbar.setDisplayHomeAsUpEnabled(true)
 
+        token = intent.getStringExtra(TOKEN) as String
+        username = intent.getStringExtra(USERNAME) as String
+
         val pref = AuthDataPreferences.getInstance(dataStore)
-        viewModel = ViewModelProvider(
-            this,
-            MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())
-        ).get(
-            CategoryViewModel::class.java
+        viewModel = ViewModelProvider(this, MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())).get(
+            HistoryImageViewModel::class.java
         )
 
-        if (token.isNotEmpty() && category.isNotEmpty()) {
-            viewModel.getCulturalObjectsByCategory(token, category)
+        if (token.isNotEmpty() && username.isNotEmpty()) {
+            viewModel.getImageUploadedByUser(token, username)
         }
 
-        viewModel.culturalObjects.observe(this) { response ->
+        viewModel.imagesHistory.observe(this) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showProgressBar()
                 }
                 is Resource.Success -> {
                     hideProgressBar()
-                    response.data?.let { newsResponse ->
-                        showRecycleList(newsResponse)
+                    response.data?.let { listResponse ->
+                        showEmptyContentLottie(false)
+                        showRecycleList(listResponse)
                     }
                 }
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e(HomeFragment.TAG, "An error occured: $message")
+                        Log.e(TAG, "An error occured: $message")
                         if (message == "Token expired" || message == "Wrong Token or expired Token") {
                             AlertDialog.Builder(this)
                                 .setTitle(getString(R.string.error))
                                 .setMessage(getString(R.string.token_exp_message))
                                 .setCancelable(false)
                                 .setPositiveButton("Ok") { _, _ ->
-                                        viewModel.removeUserDataFromDataStore()
+                                    viewModel.removeUserDataFromDataStore()
                                 }
                                 .show()
+                        } else if (message == "No Content") {
+                            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                            showEmptyContentLottie(true)
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                         }
                     }
                 }
             }
-
         }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
-    }
-
-    private fun getToolbarTitle(category: String): String {
-        return when (category) {
-            "landmark" -> {
-                getString(R.string.landmark)
-            }
-            "food" -> {
-                getString(R.string.food)
-            }
-            else -> {
-                getString(R.string.culture)
-            }
-        }
     }
 
     private fun hideProgressBar() {
@@ -121,25 +103,25 @@ class CategoryActivity : AppCompatActivity() {
         binding.progressCircular.visibility = View.VISIBLE
     }
 
-    private fun showRecycleList(data: List<CulturalObject>?) {
-        binding.rvCategory.layoutManager = LinearLayoutManager(this)
+    private fun showEmptyContentLottie(status: Boolean) {
+        if (status) {
+            binding.lottieEmptyContent.visibility = View.VISIBLE
+        } else {
+            binding.lottieEmptyContent.visibility = View.GONE
+        }
+    }
 
-        val listUserAdapter = data?.let { LIstLandmarkAdapter(it) }
-        binding.rvCategory.adapter = listUserAdapter
-        binding.rvCategory.isNestedScrollingEnabled = false
+    private fun showRecycleList(data: List<ImageUploadedByUser>?) {
+        binding.rvHistory.layoutManager = LinearLayoutManager(this)
 
-        listUserAdapter?.setOnItemClickCallback(object : LIstLandmarkAdapter.OnItemClickCallback {
-            override fun onItemClicked(culturalObject: CulturalObject) {
-                val intent = Intent(this@CategoryActivity, DetailLandmarkActivity::class.java)
-                intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
-                intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
-                startActivity(intent)
-            }
-        })
+        val listUserAdapter = data?.let { ListImageAdapter(it) }
+        binding.rvHistory.adapter = listUserAdapter
+        binding.rvHistory.isNestedScrollingEnabled = false
     }
 
     companion object {
-        const val CATEGORY = "category"
         const val TOKEN = "token"
+        const val USERNAME = "username"
+        private const val TAG = "HistoryImageActivity"
     }
 }

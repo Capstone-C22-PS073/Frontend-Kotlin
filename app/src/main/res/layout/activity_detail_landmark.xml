@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.DetailLandmarkActivity">
+    tools:context=".view.detail.DetailLandmarkActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -93,17 +93,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
                 <TextView
-                    android:id="@+id/textView4"
-                    style="@style/DescriptionText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/built_on"
-                    android:textColor="@color/secondary_text_Color"
-                    app:layout_constraintStart_toStartOf="@+id/textView5"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_location" />
-
-                <TextView
                     android:id="@+id/textView3"
                     style="@style/DescriptionText"
                     android:layout_width="wrap_content"
@@ -111,8 +100,8 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/category"
                     android:textColor="@color/secondary_text_Color"
-                    app:layout_constraintStart_toStartOf="@+id/textView4"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_built" />
+                    app:layout_constraintStart_toStartOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                 <TextView
                     android:id="@+id/tv_location"
@@ -126,17 +115,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView5"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name" />
-
-                <TextView
-                    android:id="@+id/tv_built"
-                    style="@style/DescriptionText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/lorem2"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView4"
-                    app:layout_constraintTop_toTopOf="@+id/textView4" />
 
                 <TextView
                     android:id="@+id/tv_category"
@@ -192,10 +170,73 @@
                     android:layout_marginBottom="8dp"
                     android:text="@string/lorem40"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageView2"
                     app:layout_constraintTop_toBottomOf="@+id/description" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#f3f3f3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+                <ImageView
+                    android:id="@+id/ic_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/icon_history"
+                    android:src="@drawable/ic_history"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+                <TextView
+                    android:id="@+id/history"
+                    style="@style/TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/history"
+                    app:layout_constraintStart_toEndOf="@+id/ic_history"
+                    app:layout_constraintTop_toTopOf="@+id/ic_history" />
+
+                <TextView
+                    android:id="@+id/tv_history"
+                    style="@style/DescriptionText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/lorem40"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/ic_history"
+                    app:layout_constraintTop_toBottomOf="@+id/history" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_maps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/go_to_maps"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"
+                    app:cornerRadius="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_history" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

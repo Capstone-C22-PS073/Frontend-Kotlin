@@ -1,8 +1,9 @@
-package com.capstonec22ps073.toursight
+package com.capstonec22ps073.toursight.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.capstonec22ps073.toursight.model.OnBoardingItem
 import com.capstonec22ps073.toursight.databinding.OnboardingItemContainerBinding
 
 class OnBoardingAdapter(private val onBoardingItem: List<OnBoardingItem>) : RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {

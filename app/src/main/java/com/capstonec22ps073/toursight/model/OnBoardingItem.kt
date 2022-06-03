@@ -1,4 +1,4 @@
-package com.capstonec22ps073.toursight
+package com.capstonec22ps073.toursight.model
 
 data class OnBoardingItem(
     val onBoardingImage: Int,

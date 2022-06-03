@@ -67,6 +67,13 @@
     <string name="token_exp_message">Sorry, your session has expired.\nPlease re-login to continue</string>
     <string name="search_hint">Search...</string>
     <string name="search_not_found">Search not found</string>
+    <string name="icon_history">Icon history</string>
+    <string name="history">History</string>
+    <string name="go_to_maps">Find Location</string>
+    <string name="close">Close</string>
+    <string name="image_recognition_failed_title">Image Recognition Failed</string>
+    <string name="image_recognition_failed_message">make sure the object is a landmark or building, food, or a cultural object</string>
+    <string name="uploaded_at" >Uploaded at: %s</string>
 
     <string-array name="data_landmark_name">
         <item>Monas</item>

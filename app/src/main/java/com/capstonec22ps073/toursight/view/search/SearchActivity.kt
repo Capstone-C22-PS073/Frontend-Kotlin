@@ -16,7 +16,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstonec22ps073.toursight.LIstLandmarkAdapter
+import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.data.AuthDataPreferences
@@ -24,7 +24,7 @@ import com.capstonec22ps073.toursight.databinding.ActivitySearchBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
 import com.capstonec22ps073.toursight.util.Resource
-import com.capstonec22ps073.toursight.view.DetailLandmarkActivity
+import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.login.LoginActivity
 import com.capstonec22ps073.toursight.view.main.MainViewModelFactory
 import java.util.ArrayList
@@ -78,7 +78,7 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener, Vie
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e("SearchActivity", "An error occured: $message")
+                        Log.e(TAG, "An error occured: $message")
                         if (message == "Token expired" || message == "Wrong Token or expired Token") {
                             AlertDialog.Builder(this)
                                 .setTitle(getString(R.string.error))
@@ -154,7 +154,7 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener, Vie
             override fun onItemClicked(culturalObject: CulturalObject) {
                 val intent = Intent(this@SearchActivity, DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
-                intent.putExtra(DetailLandmarkActivity.STATUS, "passing data")
+                intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
                 startActivity(intent)
             }
         })

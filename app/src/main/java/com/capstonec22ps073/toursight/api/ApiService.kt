@@ -1,5 +1,7 @@
 package com.capstonec22ps073.toursight.api
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -36,4 +38,25 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("keyword") keyword: String,
     ): Response<List<CulturalObject>>
+
+    @FormUrlEncoded
+    @GET("getdatabyimg")
+    suspend fun getCulturalObjectByClassname(
+        @Header("Authorization") token: String,
+        @Field("classname") classname: String,
+    ): Response<List<CulturalObject>>
+
+    @Multipart
+    @POST("image")
+    suspend fun uploadImage(
+        @Header("Authorization") token: String,
+        @Part("username") username: RequestBody,
+        @Part image: MultipartBody.Part,
+    ): Response<UploadImageResponse>
+
+    @GET("imageuser")
+    suspend fun getListImageUploadedByUser(
+        @Header("Authorization") token: String,
+        @Query("username") username: String,
+    ): Response<List<ImageUploadedByUser>>
 }

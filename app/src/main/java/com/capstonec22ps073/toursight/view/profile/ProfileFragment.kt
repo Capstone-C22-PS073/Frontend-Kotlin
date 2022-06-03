@@ -1,6 +1,5 @@
 package com.capstonec22ps073.toursight.view.profile
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -8,25 +7,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.ViewModelProvider
-import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.FragmentProfileBinding
-import com.capstonec22ps073.toursight.repository.AuthRepository
-import com.capstonec22ps073.toursight.view.AuthViewModelFactory
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "auth")
+import com.capstonec22ps073.toursight.view.history.HistoryImageActivity
+import com.capstonec22ps073.toursight.view.main.MainActivity
+import com.capstonec22ps073.toursight.view.main.MainViewModel
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: MainViewModel
+
+    private var token = ""
+    private var username = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,10 +30,19 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val pref = AuthDataPreferences.getInstance(activity?.dataStore!!)
-        viewModel = ViewModelProvider(this, AuthViewModelFactory(AuthRepository(pref))).get(
-            ProfileViewModel::class.java
-        )
+        viewModel = (activity as MainActivity).viewModel
+
+        viewModel.getUsername().observe(requireActivity()) { username ->
+            if (username != "") {
+                this.username = username
+            }
+        }
+
+        viewModel.getUserToken().observe(requireActivity()) { token ->
+            if (token != "") {
+                this.token = token
+            }
+        }
 
         binding.btnLanguage.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
@@ -47,6 +52,25 @@ class ProfileFragment : Fragment() {
             viewModel.removeUserToken()
             viewModel.removeUsername()
             viewModel.removeUserEmail()
+        }
+
+        setUserData()
+
+        binding.btnHistory.setOnClickListener {
+            val intent = Intent(requireContext(), HistoryImageActivity::class.java)
+            intent.putExtra(HistoryImageActivity.TOKEN, this.token)
+            intent.putExtra(HistoryImageActivity.USERNAME, this.username)
+            startActivity(intent)
+        }
+    }
+
+    private fun setUserData() {
+        viewModel.getUserEmail().observe(requireActivity()) { email ->
+            binding.tvEmail.text = email
+        }
+
+        viewModel.getUsername().observe(requireActivity()) { username ->
+            binding.tvUsername.text = username
         }
     }
 }
