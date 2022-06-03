@@ -1,5 +1,6 @@
 package com.capstonec22ps073.toursight.view.main
 
+import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,12 +18,23 @@ class MainViewModel(
     private val culturalObjectRepository: CulturalObjectRepository,
     private val authRepository: AuthRepository
 ) : ViewModel() {
-    val toursights: MutableLiveData<Resource<List<CulturalObject>>> = MutableLiveData()
+    val culturalObjects: MutableLiveData<Resource<List<CulturalObject>>> = MutableLiveData()
+    val location: MutableLiveData<Location> = MutableLiveData()
 
-    fun getALlToursight(token: String) = viewModelScope.launch {
-        toursights.postValue(Resource.Loading())
+    fun setLocation(location: Location) {
+        this.location.postValue(location)
+    }
+
+    fun getALlCulturalObjects(token: String) = viewModelScope.launch {
+        culturalObjects.postValue(Resource.Loading())
         val response = culturalObjectRepository.getAllToursight(token)
-        toursights.postValue(handleCulturalObjectResponse(response))
+        culturalObjects.postValue(handleCulturalObjectResponse(response))
+    }
+
+    fun getCulturalObjectBasedOnUserLocation(token: String, city: String) = viewModelScope.launch {
+        culturalObjects.postValue(Resource.Loading())
+        val response = culturalObjectRepository.getCulturalObjectBasedOnSearch(token, city)
+        culturalObjects.postValue(handleCulturalObjectResponse(response))
     }
 
     private fun handleCulturalObjectResponse(response: Response<List<CulturalObject>>): Resource<List<CulturalObject>> {

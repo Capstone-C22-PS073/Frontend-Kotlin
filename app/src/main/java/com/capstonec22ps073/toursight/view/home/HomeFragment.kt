@@ -43,20 +43,23 @@ class HomeFragment : Fragment() {
 
         viewModel.getUserToken().observe(viewLifecycleOwner) { token ->
             if (token != "") {
-                viewModel.getALlToursight(token)
                 this.token = token
             }
         }
 
-        viewModel.toursights.observe(viewLifecycleOwner) { response ->
+        viewModel.culturalObjects.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showProgressBar()
                 }
                 is Resource.Success -> {
                     hideProgressBar()
-                    response.data?.let { newsResponse ->
-                        showRecycleList(newsResponse)
+                    response.data?.let { culturalObjectresponse ->
+                        if (culturalObjectresponse.size > 7) {
+                            showRecycleList(getSubList(culturalObjectresponse))
+                        } else {
+                            showRecycleList(culturalObjectresponse)
+                        }
                     }
                 }
                 is Resource.Error -> {
@@ -76,6 +79,8 @@ class HomeFragment : Fragment() {
                                     }
                                 }
                                 .show()
+                        } else if (message == "No Content") {
+                            viewModel.getALlCulturalObjects(this.token)
                         } else {
                             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                         }
@@ -118,6 +123,14 @@ class HomeFragment : Fragment() {
 
     private fun showProgressBar() {
         binding.progressCircular.visibility = View.VISIBLE
+    }
+
+    fun <T> getSubList(list: List<T>): List<T>? {
+        val subList: MutableList<T> = ArrayList()
+        for (i in 0..7) {
+            subList.add(list[i])
+        }
+        return subList
     }
 
     private fun showRecycleList(data: List<CulturalObject>?) {
