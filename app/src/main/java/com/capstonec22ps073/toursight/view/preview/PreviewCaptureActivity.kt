@@ -25,7 +25,7 @@ import com.capstonec22ps073.toursight.databinding.ActivityPreviewCaptureBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
 import com.capstonec22ps073.toursight.tflite.Classifier
-import com.capstonec22ps073.toursight.util.ErrorImageRecognitionFailedDialog
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.util.rotateBitmap
 import com.capstonec22ps073.toursight.util.uriToFile
@@ -268,7 +268,7 @@ class PreviewCaptureActivity : AppCompatActivity() {
     }
 
     private fun showErrorImageRecognitionFailed() {
-        val errorDialog = ErrorImageRecognitionFailedDialog(this)
+        val errorDialog = CustomDialog(this, true, R.string.image_recognition_failed_title, R.string.image_recognition_failed_message)
         errorDialog.startDialogError()
     }
 

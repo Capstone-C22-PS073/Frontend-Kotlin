@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.ApiConfig
 import com.capstonec22ps073.toursight.api.ErrorResponse
-import com.capstonec22ps073.toursight.api.ResponseLogin
 import com.capstonec22ps073.toursight.api.ResponseRegister
 import com.capstonec22ps073.toursight.databinding.ActivityRegristerBinding
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import retrofit2.Call
@@ -102,12 +102,7 @@ class RegisterActivity: AppCompatActivity() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody?.msg != null) {
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            responseBody.msg,
-                            Toast.LENGTH_LONG
-                        ).show()
-                        showAlert(getString(R.string.success), getString(R.string.success_signup_message))
+                        showDialogSuccess()
                         Log.e(TAG, "status: ${responseBody.msg}")
                     }
                 } else {
@@ -157,6 +152,11 @@ class RegisterActivity: AppCompatActivity() {
             .setPositiveButton("Ok") { _, _ ->
                 // do nothing
             }.show()
+    }
+
+    private fun showDialogSuccess() {
+        val successDialog = CustomDialog(this, false, R.string.success, R.string.success_signup_message)
+        successDialog.startDialogError()
     }
 
     companion object {
