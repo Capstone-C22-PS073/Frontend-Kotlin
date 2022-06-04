@@ -65,7 +65,7 @@ class PreviewCaptureActivity : AppCompatActivity() {
         val pref = AuthDataPreferences.getInstance(dataStore)
         viewModel = ViewModelProvider(
             this,
-            MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())
+            MainViewModelFactory(application, AuthRepository(pref), CulturalObjectRepository())
         ).get(
             PreviewViewModel::class.java
         )
@@ -116,6 +116,8 @@ class PreviewCaptureActivity : AppCompatActivity() {
                                     viewModel.removeUserDataFromDataStore()
                                 }
                                 .show()
+                        } else if (message == "no internet connection") {
+                            showDialogNoConnection()
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                         }
@@ -171,6 +173,11 @@ class PreviewCaptureActivity : AppCompatActivity() {
             showLoading(false)
         }
 
+    }
+
+    private fun showDialogNoConnection() {
+        val dialog = CustomDialog(this, true, R.string.no_internet, R.string.no_internet_message)
+        dialog.startDialogError()
     }
 
     private fun uploadImage() {

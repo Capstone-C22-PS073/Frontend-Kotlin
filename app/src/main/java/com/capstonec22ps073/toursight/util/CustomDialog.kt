@@ -28,7 +28,11 @@ class CustomDialog(
 
         if (isError) {
             btn.setBackgroundColor(context.resources.getColor(R.color.error_background))
-            lottie.setAnimation(R.raw.lottie_error_occurred)
+            if (this.title == R.string.no_internet) {
+                lottie.setAnimation(R.raw.lottie_no_internet)
+            } else {
+                lottie.setAnimation(R.raw.lottie_error_occurred)
+            }
         } else {
             btn.setBackgroundColor(context.resources.getColor(R.color.success_background))
             lottie.setAnimation(R.raw.lottie_success)

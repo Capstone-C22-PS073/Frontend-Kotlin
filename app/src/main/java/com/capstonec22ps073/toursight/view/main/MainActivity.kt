@@ -23,6 +23,7 @@ import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityMainBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.view.camera.CameraActivity
 import com.capstonec22ps073.toursight.view.login.LoginActivity
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         getLastLocation()
 
         val pref = AuthDataPreferences.getInstance(dataStore)
-        viewModel = ViewModelProvider(this, MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())).get(
+        viewModel = ViewModelProvider(this, MainViewModelFactory(application, AuthRepository(pref), CulturalObjectRepository())).get(
             MainViewModel::class.java
         )
 
@@ -61,12 +62,6 @@ class MainActivity : AppCompatActivity() {
                 this.token = token
             }
         }
-
-//        viewModel.location.observe(this) { location ->
-//            if (location != null) {
-//
-//            }
-//        }
 
         binding.bottomNavigationView.background = null
 

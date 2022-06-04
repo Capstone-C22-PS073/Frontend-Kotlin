@@ -14,6 +14,7 @@ import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.databinding.FragmentHomeBinding
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.category.CategoryActivity
@@ -81,6 +82,8 @@ class HomeFragment : Fragment() {
                                 .show()
                         } else if (message == "No Content") {
                             viewModel.getALlCulturalObjects(this.token)
+                        } else if (message == "no internet connection") {
+                            showDialogNoConnection()
                         } else {
                             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                         }
@@ -115,6 +118,11 @@ class HomeFragment : Fragment() {
             intent.putExtra(CategoryActivity.CATEGORY, "food")
             startActivity(intent)
         }
+    }
+
+    private fun showDialogNoConnection() {
+        val dialog = CustomDialog(requireActivity(), true, R.string.no_internet, R.string.no_internet_message)
+        dialog.startDialogError()
     }
 
     private fun hideProgressBar() {

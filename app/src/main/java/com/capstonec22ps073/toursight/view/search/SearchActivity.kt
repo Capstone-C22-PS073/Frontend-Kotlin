@@ -23,6 +23,7 @@ import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivitySearchBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.login.LoginActivity
@@ -44,7 +45,7 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener, Vie
         val pref = AuthDataPreferences.getInstance(dataStore)
         viewModel = ViewModelProvider(
             this,
-            MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())
+            MainViewModelFactory(application, AuthRepository(pref), CulturalObjectRepository())
         ).get(
             SearchViewModel::class.java
         )
@@ -88,6 +89,10 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener, Vie
                                     viewModel.removeUserDataFromDataStore()
                                 }
                                 .show()
+                        } else if (message == "no internet connection") {
+                            showDialogNoConnection()
+                        } else if (message == "network failure" || message == "conversion error") {
+                            showDialogNoConnection()
                         } else {
                             showErrorMessage(true)
                             showRecycleList(ArrayList())
@@ -102,6 +107,11 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener, Vie
         binding.btnBack.setOnClickListener { finish() }
 
         binding.etSearch.setOnEditorActionListener(this)
+    }
+
+    private fun showDialogNoConnection() {
+        val dialog = CustomDialog(this, true, R.string.no_internet, R.string.no_internet_message)
+        dialog.startDialogError()
     }
 
     private fun hideProgressBar() {

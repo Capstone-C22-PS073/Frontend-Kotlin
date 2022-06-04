@@ -20,6 +20,7 @@ import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityCategoryBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.home.HomeFragment
@@ -50,7 +51,7 @@ class CategoryActivity : AppCompatActivity() {
         val pref = AuthDataPreferences.getInstance(dataStore)
         viewModel = ViewModelProvider(
             this,
-            MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())
+            MainViewModelFactory(application, AuthRepository(pref), CulturalObjectRepository())
         ).get(
             CategoryViewModel::class.java
         )
@@ -83,6 +84,8 @@ class CategoryActivity : AppCompatActivity() {
                                         viewModel.removeUserDataFromDataStore()
                                 }
                                 .show()
+                        } else if (message == "no internet connection") {
+                            showDialogNoConnection()
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                         }
@@ -97,6 +100,11 @@ class CategoryActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    private fun showDialogNoConnection() {
+        val dialog = CustomDialog(this, true, R.string.no_internet, R.string.no_internet_message)
+        dialog.startDialogError()
     }
 
     private fun getToolbarTitle(category: String): String {

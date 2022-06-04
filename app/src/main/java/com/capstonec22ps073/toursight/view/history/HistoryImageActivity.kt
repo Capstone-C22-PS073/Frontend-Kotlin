@@ -19,6 +19,7 @@ import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityHistoryImageHistoryBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.view.main.MainViewModelFactory
 
@@ -45,7 +46,7 @@ class HistoryImageActivity : AppCompatActivity() {
         username = intent.getStringExtra(USERNAME) as String
 
         val pref = AuthDataPreferences.getInstance(dataStore)
-        viewModel = ViewModelProvider(this, MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())).get(
+        viewModel = ViewModelProvider(this, MainViewModelFactory(application, AuthRepository(pref), CulturalObjectRepository())).get(
             HistoryImageViewModel::class.java
         )
 
@@ -81,6 +82,8 @@ class HistoryImageActivity : AppCompatActivity() {
                         } else if (message == "No Content") {
                             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                             showEmptyContentLottie(true)
+                        } else if (message == "no internet connection") {
+                            showDialogNoConnection()
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                         }
@@ -88,6 +91,11 @@ class HistoryImageActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun showDialogNoConnection() {
+        val dialog = CustomDialog(this, true, R.string.no_internet, R.string.no_internet_message)
+        dialog.startDialogError()
     }
 
     override fun onSupportNavigateUp(): Boolean {
