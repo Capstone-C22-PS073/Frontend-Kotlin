@@ -31,7 +31,7 @@ class RegisterActivity: AppCompatActivity() {
         }
 
         binding.tvBtnLogin.setOnClickListener {
-            finish()
+            super.onBackPressed()
         }
     }
 
