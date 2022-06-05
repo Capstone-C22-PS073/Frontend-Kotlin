@@ -44,11 +44,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        setupNavigationController()
-        getLastLocation()
-
         val pref = AuthDataPreferences.getInstance(dataStore)
         viewModel = ViewModelProvider(this, MainViewModelFactory(application, AuthRepository(pref), CulturalObjectRepository())).get(
             MainViewModel::class.java
@@ -62,6 +57,11 @@ class MainActivity : AppCompatActivity() {
                 this.token = token
             }
         }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        setupNavigationController()
+        getLastLocation()
 
         binding.bottomNavigationView.background = null
 
@@ -87,7 +87,9 @@ class MainActivity : AppCompatActivity() {
                 permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
                     getLastLocation()
                 }
-                else -> {}
+                else -> {
+                    viewModel.getALlCulturalObjects(this.token)
+                }
             }
         }
 
@@ -104,6 +106,7 @@ class MainActivity : AppCompatActivity() {
         ) {
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
+                    Log.d(TAG, "location granted")
                     this.location = location
                     val city = getGeneralCity(getAddress(location.latitude, location.longitude))
                     viewModel.getCulturalObjectBasedOnUserLocation(this.token, city)
@@ -112,6 +115,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d(TAG, "getAddress: ${getAddress(location.latitude, location.longitude)}")
                     Log.d(TAG, "getGeneralCity: ${getGeneralCity(getAddress(location.latitude, location.longitude))}")
                 } else {
+                    Log.d(TAG, "no location null")
                     viewModel.getALlCulturalObjects(this.token)
                     viewModel.setUserLocation(getString(R.string.no_location))
                     Toast.makeText(
@@ -122,6 +126,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         } else {
+            Log.d(TAG, "no location granted")
+            viewModel.setUserLocation(getString(R.string.no_location))
             requestPermissionLauncher.launch(
                 arrayOf(
                     Manifest.permission.ACCESS_COARSE_LOCATION

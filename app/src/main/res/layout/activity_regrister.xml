@@ -7,14 +7,14 @@
     app:layoutDescription="@xml/activity_regrister_scene"
     tools:context=".view.register.RegisterActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_logo"
         style="@style/HeaderText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="@string/toursight"
+        android:src="@drawable/ic_text_logo"
         android:textColor="@color/primary_color"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
