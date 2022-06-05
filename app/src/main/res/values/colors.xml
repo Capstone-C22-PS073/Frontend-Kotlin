@@ -15,4 +15,6 @@
     <color name="quaternary_color">#E8AA9B</color>
     <color name="quinary_color">#DCD5DC</color>
     <color name="secondary_text_Color">#BBBBBB</color>
+    <color name="success_background">#34C759</color>
+    <color name="error_background">#Ef4444</color>
 </resources>

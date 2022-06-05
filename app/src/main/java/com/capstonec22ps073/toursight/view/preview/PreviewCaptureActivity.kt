@@ -14,6 +14,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -25,7 +27,7 @@ import com.capstonec22ps073.toursight.databinding.ActivityPreviewCaptureBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
 import com.capstonec22ps073.toursight.tflite.Classifier
-import com.capstonec22ps073.toursight.util.ErrorImageRecognitionFailedDialog
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.util.rotateBitmap
 import com.capstonec22ps073.toursight.util.uriToFile
@@ -65,7 +67,7 @@ class PreviewCaptureActivity : AppCompatActivity() {
         val pref = AuthDataPreferences.getInstance(dataStore)
         viewModel = ViewModelProvider(
             this,
-            MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())
+            MainViewModelFactory(application, AuthRepository(pref), CulturalObjectRepository())
         ).get(
             PreviewViewModel::class.java
         )
@@ -100,7 +102,14 @@ class PreviewCaptureActivity : AppCompatActivity() {
                         val intent = Intent(this, DetailLandmarkActivity::class.java)
                         intent.putExtra(DetailLandmarkActivity.DATA, culturalObjectsResponse[0])
                         intent.putExtra(DetailLandmarkActivity.SOURCE, "camera")
-                        startActivity(intent)
+
+                        val optionCompat: ActivityOptionsCompat =
+                            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                this@PreviewCaptureActivity,
+                                Pair(binding.previewImageView, "culturalObject")
+                            )
+
+                        startActivity(intent, optionCompat.toBundle())
                     }
                 }
                 is Resource.Error -> {
@@ -116,6 +125,8 @@ class PreviewCaptureActivity : AppCompatActivity() {
                                     viewModel.removeUserDataFromDataStore()
                                 }
                                 .show()
+                        } else if (message == "no internet connection") {
+                            showDialogNoConnection()
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                         }
@@ -171,6 +182,11 @@ class PreviewCaptureActivity : AppCompatActivity() {
             showLoading(false)
         }
 
+    }
+
+    private fun showDialogNoConnection() {
+        val dialog = CustomDialog(this, true, R.string.no_internet, R.string.no_internet_message)
+        dialog.startDialogError()
     }
 
     private fun uploadImage() {
@@ -268,7 +284,7 @@ class PreviewCaptureActivity : AppCompatActivity() {
     }
 
     private fun showErrorImageRecognitionFailed() {
-        val errorDialog = ErrorImageRecognitionFailedDialog(this)
+        val errorDialog = CustomDialog(this, true, R.string.image_recognition_failed_title, R.string.image_recognition_failed_message)
         errorDialog.startDialogError()
     }
 

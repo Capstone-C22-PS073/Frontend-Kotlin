@@ -7,13 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.api.CulturalObject
 import com.capstonec22ps073.toursight.databinding.FragmentHomeBinding
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.category.CategoryActivity
@@ -43,20 +47,34 @@ class HomeFragment : Fragment() {
 
         viewModel.getUserToken().observe(viewLifecycleOwner) { token ->
             if (token != "") {
-                viewModel.getALlToursight(token)
                 this.token = token
             }
         }
 
-        viewModel.toursights.observe(viewLifecycleOwner) { response ->
+        viewModel.getUsername().observe(requireActivity()) { username ->
+            if (username != "") {
+                val greetingUser = String.format(getString(R.string.greeting), username)
+                binding.tvGreeting.setText(greetingUser)
+            }
+        }
+
+        viewModel.location.observe(requireActivity()) { location ->
+            binding.tvLocation.setText(location)
+        }
+
+        viewModel.culturalObjects.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
                     showProgressBar()
                 }
                 is Resource.Success -> {
                     hideProgressBar()
-                    response.data?.let { newsResponse ->
-                        showRecycleList(newsResponse)
+                    response.data?.let { culturalObjectresponse ->
+                        if (culturalObjectresponse.size > 7) {
+                            showRecycleList(getSubList(culturalObjectresponse))
+                        } else {
+                            showRecycleList(culturalObjectresponse)
+                        }
                     }
                 }
                 is Resource.Error -> {
@@ -76,6 +94,10 @@ class HomeFragment : Fragment() {
                                     }
                                 }
                                 .show()
+                        } else if (message == "No Content") {
+                            viewModel.getALlCulturalObjects(this.token)
+                        } else if (message == "no internet connection") {
+                            showDialogNoConnection()
                         } else {
                             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                         }
@@ -112,12 +134,25 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun showDialogNoConnection() {
+        val dialog = CustomDialog(requireActivity(), true, R.string.no_internet, R.string.no_internet_message)
+        dialog.startDialogError()
+    }
+
     private fun hideProgressBar() {
         binding.progressCircular.visibility = View.INVISIBLE
     }
 
     private fun showProgressBar() {
         binding.progressCircular.visibility = View.VISIBLE
+    }
+
+    fun <T> getSubList(list: List<T>): List<T>? {
+        val subList: MutableList<T> = ArrayList()
+        for (i in 0..7) {
+            subList.add(list[i])
+        }
+        return subList
     }
 
     private fun showRecycleList(data: List<CulturalObject>?) {
@@ -128,11 +163,18 @@ class HomeFragment : Fragment() {
         binding.rvLandmark.isNestedScrollingEnabled = false
 
         listUserAdapter?.setOnItemClickCallback(object : LIstLandmarkAdapter.OnItemClickCallback {
-            override fun onItemClicked(culturalObject: CulturalObject) {
+            override fun onItemClicked(culturalObject: CulturalObject, image: ImageView) {
                 val intent = Intent(requireContext(), DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
                 intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
-                startActivity(intent)
+
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        requireActivity(),
+                        Pair(image, "culturalObject")
+                    )
+
+                startActivity(intent, optionCompat.toBundle())
             }
         })
     }

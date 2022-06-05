@@ -74,6 +74,12 @@
     <string name="image_recognition_failed_title">Image Recognition Failed</string>
     <string name="image_recognition_failed_message">make sure the object is a landmark or building, food, or a cultural object</string>
     <string name="uploaded_at" >Uploaded at: %s</string>
+    <string name="no_internet">No Internet</string>
+    <string name="no_internet_message">Make sure wifi or internet cellular data is turned on and then try again</string>
+    <string name="greeting">Hello, %s</string>
+    <string name="your_location">Your location,</string>
+    <string name="landmark_around_you">Landmark around you</string>
+    <string name="no_location">No location detected</string>
 
     <string-array name="data_landmark_name">
         <item>Monas</item>

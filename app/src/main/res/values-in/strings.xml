@@ -67,4 +67,10 @@
     <string name="image_recognition_failed_title">Pengenalan Gambar Gagal</string>
     <string name="image_recognition_failed_message">pastikan objek dari gambar merupakan landmark atau bangunan, makanan, atau objek kultural lainnya</string>
     <string name="uploaded_at">Diunggah pada: %s</string>
+    <string name="no_internet">Tidak Ada Internet</string>
+    <string name="no_internet_message">Pastikan wifi atau internet seluler aktif kemudian coba kembali</string>
+    <string name="greeting">Halo, %s</string>
+    <string name="your_location">Lokasi kamu,</string>
+    <string name="landmark_around_you">Landmark di sekitar mu</string>
+    <string name="no_location">Tidak ada lokasi</string>
 </resources>

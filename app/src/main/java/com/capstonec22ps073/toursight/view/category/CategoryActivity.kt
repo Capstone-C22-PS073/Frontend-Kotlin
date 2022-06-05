@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -20,6 +23,7 @@ import com.capstonec22ps073.toursight.data.AuthDataPreferences
 import com.capstonec22ps073.toursight.databinding.ActivityCategoryBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
+import com.capstonec22ps073.toursight.util.CustomDialog
 import com.capstonec22ps073.toursight.util.Resource
 import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.home.HomeFragment
@@ -50,7 +54,7 @@ class CategoryActivity : AppCompatActivity() {
         val pref = AuthDataPreferences.getInstance(dataStore)
         viewModel = ViewModelProvider(
             this,
-            MainViewModelFactory(AuthRepository(pref), CulturalObjectRepository())
+            MainViewModelFactory(application, AuthRepository(pref), CulturalObjectRepository())
         ).get(
             CategoryViewModel::class.java
         )
@@ -83,6 +87,8 @@ class CategoryActivity : AppCompatActivity() {
                                         viewModel.removeUserDataFromDataStore()
                                 }
                                 .show()
+                        } else if (message == "no internet connection") {
+                            showDialogNoConnection()
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                         }
@@ -97,6 +103,11 @@ class CategoryActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    private fun showDialogNoConnection() {
+        val dialog = CustomDialog(this, true, R.string.no_internet, R.string.no_internet_message)
+        dialog.startDialogError()
     }
 
     private fun getToolbarTitle(category: String): String {
@@ -129,11 +140,18 @@ class CategoryActivity : AppCompatActivity() {
         binding.rvCategory.isNestedScrollingEnabled = false
 
         listUserAdapter?.setOnItemClickCallback(object : LIstLandmarkAdapter.OnItemClickCallback {
-            override fun onItemClicked(culturalObject: CulturalObject) {
+            override fun onItemClicked(culturalObject: CulturalObject, image: ImageView) {
                 val intent = Intent(this@CategoryActivity, DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
                 intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
-                startActivity(intent)
+
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this@CategoryActivity,
+                        Pair(image, "culturalObject")
+                    )
+
+                startActivity(intent, optionCompat.toBundle())
             }
         })
     }
