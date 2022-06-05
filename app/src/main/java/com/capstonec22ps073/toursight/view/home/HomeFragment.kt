@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
@@ -160,11 +163,18 @@ class HomeFragment : Fragment() {
         binding.rvLandmark.isNestedScrollingEnabled = false
 
         listUserAdapter?.setOnItemClickCallback(object : LIstLandmarkAdapter.OnItemClickCallback {
-            override fun onItemClicked(culturalObject: CulturalObject) {
+            override fun onItemClicked(culturalObject: CulturalObject, image: ImageView) {
                 val intent = Intent(requireContext(), DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
                 intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
-                startActivity(intent)
+
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        requireActivity(),
+                        Pair(image, "culturalObject")
+                    )
+
+                startActivity(intent, optionCompat.toBundle())
             }
         })
     }

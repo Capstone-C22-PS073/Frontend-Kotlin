@@ -14,6 +14,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -100,7 +102,14 @@ class PreviewCaptureActivity : AppCompatActivity() {
                         val intent = Intent(this, DetailLandmarkActivity::class.java)
                         intent.putExtra(DetailLandmarkActivity.DATA, culturalObjectsResponse[0])
                         intent.putExtra(DetailLandmarkActivity.SOURCE, "camera")
-                        startActivity(intent)
+
+                        val optionCompat: ActivityOptionsCompat =
+                            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                this@PreviewCaptureActivity,
+                                Pair(binding.previewImageView, "culturalObject")
+                            )
+
+                        startActivity(intent, optionCompat.toBundle())
                     }
                 }
                 is Resource.Error -> {

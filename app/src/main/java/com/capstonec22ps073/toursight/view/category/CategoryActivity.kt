@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -137,11 +140,18 @@ class CategoryActivity : AppCompatActivity() {
         binding.rvCategory.isNestedScrollingEnabled = false
 
         listUserAdapter?.setOnItemClickCallback(object : LIstLandmarkAdapter.OnItemClickCallback {
-            override fun onItemClicked(culturalObject: CulturalObject) {
+            override fun onItemClicked(culturalObject: CulturalObject, image: ImageView) {
                 val intent = Intent(this@CategoryActivity, DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
                 intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
-                startActivity(intent)
+
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this@CategoryActivity,
+                        Pair(image, "culturalObject")
+                    )
+
+                startActivity(intent, optionCompat.toBundle())
             }
         })
     }

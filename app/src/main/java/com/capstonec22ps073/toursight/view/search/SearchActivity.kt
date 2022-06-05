@@ -9,8 +9,11 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -161,11 +164,18 @@ class SearchActivity : AppCompatActivity(), TextView.OnEditorActionListener, Vie
         binding.rvSearch.adapter = listUserAdapter
 
         listUserAdapter?.setOnItemClickCallback(object : LIstLandmarkAdapter.OnItemClickCallback {
-            override fun onItemClicked(culturalObject: CulturalObject) {
+            override fun onItemClicked(culturalObject: CulturalObject, image: ImageView) {
                 val intent = Intent(this@SearchActivity, DetailLandmarkActivity::class.java)
                 intent.putExtra(DetailLandmarkActivity.DATA, culturalObject)
                 intent.putExtra(DetailLandmarkActivity.SOURCE, "recycle view")
-                startActivity(intent)
+
+                val optionCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this@SearchActivity,
+                        Pair(image, "culturalObject")
+                    )
+
+                startActivity(intent, optionCompat.toBundle())
             }
         })
     }

@@ -35,7 +35,7 @@ class DetailLandmarkActivity : AppCompatActivity() {
                 intent.putExtra("HOME", true)
                 startActivity(intent)
             } else {
-                finish()
+                super.onBackPressed()
             }
         }
 

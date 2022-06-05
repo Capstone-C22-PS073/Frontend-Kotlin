@@ -2,6 +2,7 @@ package com.capstonec22ps073.toursight.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstonec22ps073.toursight.api.CulturalObject
@@ -33,12 +34,12 @@ class LIstLandmarkAdapter(private val listLandmark: List<CulturalObject>): Recyc
 
         holder.binding.imgItemImage.clipToOutline = true
 
-        holder.binding.imgItemImage.setOnClickListener { onItemClickCallback.onItemClicked(data) }
+        holder.binding.imgItemImage.setOnClickListener { onItemClickCallback.onItemClicked(data, holder.binding.imgItemImage)}
     }
 
     override fun getItemCount(): Int = listLandmark.size
 
     interface OnItemClickCallback {
-        fun onItemClicked(culturalObject: CulturalObject)
+        fun onItemClicked(culturalObject: CulturalObject, image: ImageView)
     }
 }
