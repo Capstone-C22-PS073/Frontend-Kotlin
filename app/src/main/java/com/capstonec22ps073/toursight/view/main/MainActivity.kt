@@ -107,11 +107,13 @@ class MainActivity : AppCompatActivity() {
                     this.location = location
                     val city = getGeneralCity(getAddress(location.latitude, location.longitude))
                     viewModel.getCulturalObjectBasedOnUserLocation(this.token, city)
+                    viewModel.setUserLocation(city)
                     Log.d(TAG, "getLastLocation: ${location.latitude}, ${location.longitude}")
                     Log.d(TAG, "getAddress: ${getAddress(location.latitude, location.longitude)}")
                     Log.d(TAG, "getGeneralCity: ${getGeneralCity(getAddress(location.latitude, location.longitude))}")
                 } else {
                     viewModel.getALlCulturalObjects(this.token)
+                    viewModel.setUserLocation(getString(R.string.no_location))
                     Toast.makeText(
                         this,
                         "Location is not found. Try Again",

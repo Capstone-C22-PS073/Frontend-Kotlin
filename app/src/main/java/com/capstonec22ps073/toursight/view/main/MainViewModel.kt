@@ -24,6 +24,11 @@ class MainViewModel(
     private val authRepository: AuthRepository
 ) : AndroidViewModel(app) {
     val culturalObjects: MutableLiveData<Resource<List<CulturalObject>>> = MutableLiveData()
+    val location: MutableLiveData<String> = MutableLiveData()
+
+    fun setUserLocation(location: String) {
+        this.location.postValue(location)
+    }
 
     fun getALlCulturalObjects(token: String) = viewModelScope.launch {
         safeCulturalObjectsCall(token)

@@ -17,9 +17,9 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/bg_btn_search"
             android:clipToOutline="true"
-            android:src="@drawable/ic_search"
             android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_username"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_greeting" />
 
@@ -30,18 +30,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="@string/good_morning"
+            android:text="@string/greeting"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_username"
+            android:id="@+id/tv_your_location"
             style="@style/DescriptionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="-5dp"
-            android:text="@string/dummy_username"
+            android:text="@string/your_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
 
@@ -54,13 +53,13 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/rounded10"
             android:clipToOutline="true"
+            android:contentDescription="@string/banner_desc"
             android:scaleType="centerCrop"
             android:src="@drawable/home_banner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_username"
-            android:contentDescription="@string/banner_desc" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
         <TextView
             android:id="@+id/textView"
@@ -133,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/list_landmark_title"
+            android:text="@string/landmark_around_you"
             app:layout_constraintStart_toStartOf="@+id/banner_home"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -200,6 +199,16 @@
             app:layout_constraintEnd_toEndOf="@+id/btn_food"
             app:layout_constraintStart_toStartOf="@+id/btn_food"
             app:layout_constraintTop_toBottomOf="@+id/btn_food" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            style="@style/DescriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-5dp"
+            android:text="@string/location"
+            app:layout_constraintStart_toStartOf="@+id/tv_your_location"
+            app:layout_constraintTop_toBottomOf="@+id/tv_your_location" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

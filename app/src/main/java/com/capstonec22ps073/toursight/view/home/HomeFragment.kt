@@ -48,6 +48,17 @@ class HomeFragment : Fragment() {
             }
         }
 
+        viewModel.getUsername().observe(requireActivity()) { username ->
+            if (username != "") {
+                val greetingUser = String.format(getString(R.string.greeting), username)
+                binding.tvGreeting.setText(greetingUser)
+            }
+        }
+
+        viewModel.location.observe(requireActivity()) { location ->
+            binding.tvLocation.setText(location)
+        }
+
         viewModel.culturalObjects.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
