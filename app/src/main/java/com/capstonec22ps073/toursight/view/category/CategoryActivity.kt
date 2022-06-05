@@ -2,6 +2,7 @@ package com.capstonec22ps073.toursight.view.category
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
@@ -133,7 +135,11 @@ class CategoryActivity : AppCompatActivity() {
     }
 
     private fun showRecycleList(data: List<CulturalObject>?) {
-        binding.rvCategory.layoutManager = LinearLayoutManager(this)
+        binding.rvCategory.layoutManager = if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            GridLayoutManager(this, 2)
+        } else {
+            LinearLayoutManager(this)
+        }
 
         val listUserAdapter = data?.let { LIstLandmarkAdapter(it) }
         binding.rvCategory.adapter = listUserAdapter

@@ -1,6 +1,7 @@
 package com.capstonec22ps073.toursight.view.history
 
 import android.content.Context
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.adapter.ListImageAdapter
@@ -120,7 +122,11 @@ class HistoryImageActivity : AppCompatActivity() {
     }
 
     private fun showRecycleList(data: List<ImageUploadedByUser>?) {
-        binding.rvHistory.layoutManager = LinearLayoutManager(this)
+        binding.rvHistory.layoutManager = if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            GridLayoutManager(this, 2)
+        } else {
+            LinearLayoutManager(this)
+        }
 
         val listUserAdapter = data?.let { ListImageAdapter(it) }
         binding.rvHistory.adapter = listUserAdapter

@@ -1,6 +1,7 @@
 package com.capstonec22ps073.toursight.view.home
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstonec22ps073.toursight.adapter.LIstLandmarkAdapter
 import com.capstonec22ps073.toursight.R
@@ -156,7 +158,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun showRecycleList(data: List<CulturalObject>?) {
-        binding.rvLandmark.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvLandmark.layoutManager = if (requireContext().resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            GridLayoutManager(requireContext(), 2)
+        } else {
+            LinearLayoutManager(requireContext())
+        }
 
         val listUserAdapter = data?.let { LIstLandmarkAdapter(it) }
         binding.rvLandmark.adapter = listUserAdapter
