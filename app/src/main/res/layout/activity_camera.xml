@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CameraActivity">
+    tools:context=".view.camera.CameraActivity">
 
     <androidx.camera.view.PreviewView
         android:id="@+id/preview_view"
@@ -22,7 +22,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="When shooting, make sure\nthe subject is in focus"
+        android:text="@string/camera_shoot_adv"
         android:textColor="@color/white"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/preview_view"
@@ -37,7 +37,8 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_close"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/close_the_camera" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -58,14 +59,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/btn_camera_description" />
 
         <TextView
             android:id="@+id/btn_gallery"
             style="@style/DescriptionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gallery"
+            android:text="@string/gallery"
             android:textColor="@color/primary_color"
             android:background="@drawable/container_gallery_btn"
             android:paddingHorizontal="20dp"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.ProfileFragment">
+    tools:context=".view.profile.ProfileFragment">
 
     <View
         android:id="@+id/view2"
@@ -25,7 +25,8 @@
         android:src="@drawable/ic_person"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/icon_user_desc" />
 
     <TextView
         android:id="@+id/tv_username"
@@ -33,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="Username"
+        android:text="@string/username"
         android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
@@ -43,7 +44,7 @@
         style="@style/DescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="email@gmail.com"
+        android:text="@string/dummy_email"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/tv_username" />
@@ -56,7 +57,7 @@
         android:background="@android:color/transparent"
         android:drawableEnd="@drawable/ic_navigate_next"
         android:paddingHorizontal="24dp"
-        android:text="Language"
+        android:text="@string/language"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +72,7 @@
         android:background="@android:color/transparent"
         android:drawableEnd="@drawable/ic_navigate_next"
         android:paddingHorizontal="24dp"
-        android:text="History capture"
+        android:text="@string/history_capture"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +88,7 @@
         android:backgroundTint="@color/primary_color"
         android:fontFamily="@font/poppins_bold"
         android:minWidth="180dp"
-        android:text="Log out"
+        android:text="@string/log_out"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="40dp"
