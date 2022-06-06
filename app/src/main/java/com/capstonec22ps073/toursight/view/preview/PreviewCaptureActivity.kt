@@ -52,7 +52,7 @@ class PreviewCaptureActivity : AppCompatActivity() {
     private lateinit var viewModel: PreviewViewModel
 
     private val inputSize = 128
-    private val modelPath = "model.tflite"
+    private val modelPath = "model_1_3.tflite"
     private val labelPath = "label.txt"
     private lateinit var classifier: Classifier
     private var token = ""
