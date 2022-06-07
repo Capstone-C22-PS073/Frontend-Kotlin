@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -38,6 +39,7 @@ class HistoryImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryImageHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         setSupportActionBar(binding.toolbar)
         val actionbar = supportActionBar
@@ -65,7 +67,7 @@ class HistoryImageActivity : AppCompatActivity() {
                     hideProgressBar()
                     response.data?.let { listResponse ->
                         showEmptyContentLottie(false)
-                        showRecycleList(listResponse)
+                        showRecycleList(listResponse.reversed())
                     }
                 }
                 is Resource.Error -> {

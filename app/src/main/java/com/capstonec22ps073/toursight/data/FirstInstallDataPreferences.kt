@@ -11,13 +11,13 @@ class FirstInstallDataPreferences private constructor(private val dataStore: Dat
 
     fun getUserFirstInstallStatus(): Flow<Boolean> {
         return dataStore.data.map { preference ->
-            preference[FIRST_INSTALL_KEY] ?: false
+            preference[FIRST_INSTALL_KEY] ?: true
         }
     }
 
     suspend fun saveUserStatusAsTrue() {
         dataStore.edit { preferences ->
-            preferences[FIRST_INSTALL_KEY] = true
+            preferences[FIRST_INSTALL_KEY] = false
         }
     }
 
