@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="get_started">Mulai</string>
-    <string name="register">Daftar</string>
     <string name="login">Masuk</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -19,10 +18,8 @@
     <string name="sign_up_message">Daftar untuk memulai perjalanmu</string>
     <string name="name">Nama</string>
     <string name="login_quesion">Sudah mempunyai akun?</string>
-    <string name="good_morning">Selamat Pagi!</string>
     <string name="banner_title">Mulai Memotret!</string>
     <string name="banner_desc">Mulai perjalanmu dengen menekan Tombol Kamera untuk mengidentifikasi  landmark disekitar mu</string>
-    <string name="list_landmark_title">Temukan sesuatu disini!</string>
     <string name="culture">Kultur</string>
     <string name="landmark">Landmark</string>
     <string name="food">Makanan</string>
@@ -31,7 +28,6 @@
     <string name="history_capture">Riwayat hasil pemotretan</string>
     <string name="log_out">Keluar</string>
     <string name="loading">Memuat....</string>
-    <string name="built_on">Dibangun pada</string>
     <string name="close_the_camera">Tutup kamera</string>
     <string name="btn_camera_description">potret</string>
     <string name="btn_back_description">Kembali ke aktivitas sebelumnya</string>

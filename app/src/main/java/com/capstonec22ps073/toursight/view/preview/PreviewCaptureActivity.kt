@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.datastore.core.DataStore
@@ -62,6 +63,7 @@ class PreviewCaptureActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPreviewCaptureBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         initClassifier()
 
         val pref = AuthDataPreferences.getInstance(dataStore)

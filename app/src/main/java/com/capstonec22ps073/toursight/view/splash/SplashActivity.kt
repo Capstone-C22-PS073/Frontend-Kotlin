@@ -39,9 +39,9 @@ class SplashActivity : AppCompatActivity() {
         binding.ivLogo.animate().setDuration(1500).alpha(1f).withEndAction {
             viewModel.getUserFirstInstallStatus().observe(this) { status ->
                 val intent = if (status) {
-                    Intent(this, MainActivity::class.java)
-                } else {
                     Intent(this, OnBoardingActivity::class.java)
+                } else {
+                    Intent(this, MainActivity::class.java)
                 }
                 startActivity(intent)
                 finish()

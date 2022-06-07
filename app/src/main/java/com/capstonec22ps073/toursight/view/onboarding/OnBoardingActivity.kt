@@ -46,6 +46,7 @@ class OnBoardingActivity : AppCompatActivity() {
         binding.btnStarted.setOnClickListener {
             startActivity(Intent(this@OnBoardingActivity, LoginActivity::class.java))
             viewModel.saveUserStatusAsTrue()
+            finish()
         }
     }
 

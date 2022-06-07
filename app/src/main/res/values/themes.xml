@@ -19,19 +19,9 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="SubHeaderText">
-        <item name="fontFamily">@font/poppins_bold</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
     <style name="TitleText">
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="SubtitleText">
-        <item name="fontFamily">@font/poppins_medium</item>
-        <item name="android:textSize">10sp</item>
     </style>
 
     <style name="DescriptionText">

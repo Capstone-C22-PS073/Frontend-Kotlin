@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.recyclerview.widget.GridLayoutManager
@@ -46,6 +47,7 @@ class HomeFragment : Fragment() {
         binding.bannerHome.clipToOutline = true
 
         viewModel = (activity as MainActivity).viewModel
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         viewModel.getUserToken().observe(viewLifecycleOwner) { token ->
             if (token != "") {

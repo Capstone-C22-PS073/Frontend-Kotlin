@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import com.capstonec22ps073.toursight.databinding.FragmentProfileBinding
 import com.capstonec22ps073.toursight.view.history.HistoryImageActivity
 import com.capstonec22ps073.toursight.view.main.MainActivity
@@ -31,6 +32,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = (activity as MainActivity).viewModel
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         viewModel.getUsername().observe(requireActivity()) { username ->
             if (username != "") {
