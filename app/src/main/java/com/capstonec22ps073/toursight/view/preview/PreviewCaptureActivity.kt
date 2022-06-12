@@ -21,6 +21,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils.rotateImage
 import com.capstonec22ps073.toursight.R
 import com.capstonec22ps073.toursight.data.AuthDataPreferences
@@ -28,12 +29,11 @@ import com.capstonec22ps073.toursight.databinding.ActivityPreviewCaptureBinding
 import com.capstonec22ps073.toursight.repository.AuthRepository
 import com.capstonec22ps073.toursight.repository.CulturalObjectRepository
 import com.capstonec22ps073.toursight.tflite.Classifier
-import com.capstonec22ps073.toursight.util.CustomDialog
-import com.capstonec22ps073.toursight.util.Resource
-import com.capstonec22ps073.toursight.util.rotateBitmap
-import com.capstonec22ps073.toursight.util.uriToFile
+import com.capstonec22ps073.toursight.util.*
 import com.capstonec22ps073.toursight.view.detail.DetailLandmarkActivity
 import com.capstonec22ps073.toursight.view.main.MainViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -162,26 +162,32 @@ class PreviewCaptureActivity : AppCompatActivity() {
         binding.btnCancel.setOnClickListener { finish() }
         binding.btnUpload.setOnClickListener {
             showLoading(true)
-            val bitmap = BitmapFactory.decodeFile(getFile?.path)
-            val result = classifier.recognizeImage(bitmap)
+            binding.btnUpload.isEnabled = false
+            lifecycleScope.launch(Dispatchers.Default) {
 
-            if (result.isEmpty()) {
-                showErrorImageRecognitionFailed()
-                Log.d("Hasil Result", "klasifikasi gagal")
-            } else {
-                viewModel.getCulturalObjectByClassname(this.token, result[0].title)
-                uploadImage()
+                val bitmap = BitmapFactory.decodeFile(getFile?.path)
+                val result = classifier.recognizeImage(bitmap)
 
-                Log.d(
-                    "Hasil Result",
-                    result[0].title + String.format(
-                        " Confidence : %.2f",
-                        (result[0].confidence)
-                    )
-                )
+                launch (Dispatchers.Main){
+                    if (result.isEmpty()) {
+                        showErrorImageRecognitionFailed()
+                        Log.d("Hasil Result", "klasifikasi gagal")
+                    } else {
+                        viewModel.getCulturalObjectByClassname(this@PreviewCaptureActivity.token, result[0].title)
+                        uploadImage()
 
+                        Log.d(
+                            "Hasil Result",
+                            result[0].title + String.format(
+                                " Confidence : %.2f",
+                                (result[0].confidence)
+                            )
+                        )
+                    }
+                    binding.btnUpload.isEnabled = true
+                    showLoading(false)
+                }
             }
-            showLoading(false)
         }
 
     }
@@ -246,9 +252,7 @@ class PreviewCaptureActivity : AppCompatActivity() {
             )
         }
 
-        showLoading(true)
         getFile = convertBitmapToFile(result)
-        showLoading(false)
         binding.previewImageView.setImageBitmap(result)
     }
 

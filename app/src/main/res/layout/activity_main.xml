@@ -45,7 +45,7 @@
             android:contentDescription="@string/fab"
             app:borderWidth="0dp"
             android:src="@drawable/ic_camera"
-            android:tint="@android:color/white"
+            app:tint="@android:color/white"
             app:layout_anchor="@id/bottom_app_bar"
             app:maxImageSize="32dp" />
 
