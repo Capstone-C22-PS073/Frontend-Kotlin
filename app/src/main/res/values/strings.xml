@@ -1,4 +1,77 @@
 <resources>
-    <string name="app_name">Toursight</string>
+    <string name="app_name" translatable="false">Toursight</string>
     <string name="get_started">Get started</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="camera_shoot_adv">When shooting, make sure\nthe subject is in focus</string>
+    <string name="gallery">Gallery</string>
+    <string name="location">Location</string>
+    <string name="category">Category</string>
+    <string name="description">Description</string>
+    <string name="lorem2" translatable="false">Lorem ipsum</string>
+    <string name="lorem40" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus, viverra vitae congue eu, consequat ac felis donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus, viverra vitae congue eu, consequat ac felis donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus</string>
+    <string name="login_message">Login to start your journey</string>
+    <string name="sign_up_question">Dont\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="fab" translatable="false">fab</string>
+    <string name="preview">Preview</string>
+    <string name="image_preview_adv">make sure the image is not blurry so that the image is recognized accurately</string>
+    <string name="done">Done</string>
+    <string name="sign_up_message">Sign up to start your journey</string>
+    <string name="name">Name</string>
+    <string name="login_quesion">Already have an account?</string>
+    <string name="banner_title">Start Capturing!</string>
+    <string name="banner_desc">Start your journey by click the Camera Button to identify cultural object around you</string>
+    <string name="culture">Culture</string>
+    <string name="landmark">Landmark</string>
+    <string name="food">Food</string>
+    <string name="username">Username</string>
+    <string name="dummy_email" translatable="false">email@gmail.com</string>
+    <string name="language">Language</string>
+    <string name="history_capture">Shooting History</string>
+    <string name="log_out">Log out</string>
+    <string name="loading">Loading....</string>
+    <string name="close_the_camera">Close the camera</string>
+    <string name="btn_camera_description">Shoot camera</string>
+    <string name="btn_back_description">Back to previous activity</string>
+    <string name="img_landmark_desc">Picture of Landmark</string>
+    <string name="icon_description">Icon Description</string>
+    <string name="preview_image_desc">Preview of Picture shot</string>
+    <string name="btn_food_desc">Go to list of food page</string>
+    <string name="btn_landmark_desc">Go to list of landmark page</string>
+    <string name="btn_culture_desc">Go to list of culture page</string>
+    <string name="icon_user_desc">Icon of user</string>
+    <string name="onboarding_image_desc">Vector Image of On Boarding page</string>
+    <string name="dummy_landmark_name" translatable="false">Monas</string>
+    <string name="error_et_empty">Field can not be empty</string>
+    <string name="error_email_format">Please enter a valid email address</string>
+    <string name="error_password_6char">Password must have at least 6 characters</string>
+    <string name="error_something_went_wrong">Something went wrong please try again later</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    <string name="success_signup_message">Your account has been successfully created, please return to the Login page to enter the application</string>
+    <string name="onboarding_item_title1">Capture Cultural Object Around You</string>
+    <string name="onboarding_item_title2">Gain Information</string>
+    <string name="onboarding_item_desc1">quickly recognise a landmark, food, and other cultural object by using your camera phone.</string>
+    <string name="onboarding_item_desc2">gain information about the history and the data about its landmark.</string>
+    <string name="error_show_camera">failed to bring up camera</string>
+    <string name="error_take_picture">failed to take pictures</string>
+    <string name="permission_not_granted">Permission not granted</string>
+    <string name="token_exp_message">Sorry, your session has expired.\nPlease re-login to continue</string>
+    <string name="search_hint">Search...</string>
+    <string name="search_not_found">Search not found</string>
+    <string name="icon_history">Icon history</string>
+    <string name="history">History</string>
+    <string name="go_to_maps">Find Location</string>
+    <string name="close">Close</string>
+    <string name="image_recognition_failed_title">Image Recognition Failed</string>
+    <string name="image_recognition_failed_message">make sure the object is a landmark or building, food, or a cultural object</string>
+    <string name="uploaded_at" >Uploaded at: %s</string>
+    <string name="no_internet">No Internet</string>
+    <string name="no_internet_message">Make sure wifi or internet cellular data is turned on and then try again</string>
+    <string name="greeting">Hello, %s</string>
+    <string name="your_location">Your location,</string>
+    <string name="landmark_around_you">Landmark around you</string>
+    <string name="no_location">No location detected</string>
 </resources>
